@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'recruits#index'
+  
+  root 'companies#top'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -16,9 +17,10 @@ Rails.application.routes.draw do
   get 'follows' => 'follows#index'
   post 'messages' => 'messages#create'
 
-  resources :companies, only: [:show] do
+  resources :companies, only: [:show, :new, :create] do
     resources :follows, only: [:create, :destroy]
   end
+
   get 'companies/:id/feeds' => 'feeds#company_feed'
   get 'companies/:id/recruits' => 'recruits#company_index'
   get 'companies/:id/about' => 'companies#about'
@@ -35,19 +37,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    devise_for :users, :controllers => {
-      :registrations => 'admin/users/registrations',
-      :sessions => 'admin/users/sessions',
-      :passwords => 'admin/users/passwords'
-    }
-
     post 'companies' => 'companies#add_employee'
     post 'companies/:id' => 'companies#remove_employee'
      
-    resources :companies, only: [:new, :create, :edit, :update, :destroy] do
+    resources :companies, only: [:edit, :update, :destroy] do
       resources :feeds
       get 'candidates' => 'entries#candidate_list'
     end 
+
+    get 'companies/home' => 'companies#home'
 
     resources :recruits do
       get 'users/:id' => 'entries#candidate_show'

@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :comapny
+  attachment :image
+
+  belongs_to :company
   has_many :follows, dependent: :destroy
   has_many :scouts, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -12,4 +14,9 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :supports, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+
+  def self.user_search(search)
+    return User.all unless search
+    User.where(['name LIKE ?', "%#{search}%"])
+  end
 end

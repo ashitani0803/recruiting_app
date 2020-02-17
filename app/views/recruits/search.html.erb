@@ -1,2 +1,80 @@
-<h1>Recruits#search</h1>
-<p>Find me in app/views/recruits/search.html.erb</p>
+<div>
+    <h2>検索</h2>
+    <ul>
+        <li><%= link_to 'すべて', search_path %></li>
+        <li><%= link_to '会社', search_path, :company => 'company' %></li>
+        <li><%= link_to 'プロフィール', search_path, :user => 'user' %></li>
+        <li><%= link_to '募集', search_path, :recruit => 'recruit' %></li>
+    </ul>
+</div>
+<div>
+    <% if params[:company] %>
+        <div>
+            <h2>会社</h2>
+            <% @companies.each do |company| %>
+                <div>
+                    <h3><%= company.name %></h3>
+                    <p><%= company.link %></p>
+                    <p><%= company.mission_body %></p>
+                </div>
+            <% end %>
+        </div>
+    <% elsif params[:user] %>
+        <div>
+            <h2>プロフィール</h2>
+            <% @users.each do |user| %>
+                <div>
+                    <h3><%= user.name %></h3>
+                    <p><%= user.company.name %></p>
+                </div>
+            <% end %>
+        </div>
+    <% elsif params[:recruit] %>
+        <div>
+            <h2>募集</h2>
+            <% @recruits.each do |recruit| %>
+                <div>
+                    <%= attachment_image_tag recruit, :image, size: '500x20' %>
+                    <span><%= recruit.occupation %></span>
+                    <h3><%= recruit.title %></h3>
+                    <p><%= recruit.do %></p>
+                </div>
+                <div>
+                    <%= attachment_image_tag recruit.company, :logo, size: '50x50' %>
+                    <%= link_to recruit.company.name, company_path(recruit.company) %>
+                    #本社のある住所を取得
+                    <% address = recruit.company.addresses.find_by(head_status: 1) %>
+                    <p><%= address.prefecture %></p>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div>
+            <h2>募集</h2>
+            <% @recruits.each do |recruit| %>
+                <div>
+                    <span><%= recruit.occupation %></span>
+                    <h3><%= recruit.title %></h3>
+                </div>
+            <% end %>
+        </div>
+        <div>
+            <h2>会社</h2>
+            <% @companies.each do |company| %>
+                <div>
+                    <h3><%= company.name %></h3>
+                    <p><%= company.link %></p>
+                </div>
+            <% end %>
+        </div>
+        <div>
+            <h2>プロフィール</h2>
+            <% @users.each do |user| %>
+                <div>
+                    <h3><%= user.name %></h3>
+                    <p><%= user.company.name %></p>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+</div>

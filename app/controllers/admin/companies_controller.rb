@@ -1,11 +1,10 @@
 class Admin::CompaniesController < ApplicationController
-  def new
-  end
+	before_action :my_company
 
-  def edit
-  end
+	def home
+	end
 
-	def create
+	def edit
 	end
 
 	def update
@@ -16,7 +15,13 @@ class Admin::CompaniesController < ApplicationController
 
 	def add_employee
 	end
-	
+
 	def remove_employee
+	end
+
+	private
+
+	def my_company
+		@company = current_user.company
 	end
 end
