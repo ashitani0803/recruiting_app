@@ -1,2 +1,19 @@
-<h1>Feeds#index</h1>
-<p>Find me in app/views/feeds/index.html.erb</p>
+<div>
+	<% @feeds.each do |feed| %>
+		<div>
+			<%= link_to company_path(feed.company) do %>
+				<%= attachment_image_tag feed.company, :logo, size: '600x180' %>
+				<%= feed.company.company_name %>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to feed_path(feed) do %>
+				<h3><%= feed.title %></h3>
+				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+		<div id="favorite_btn">
+			<%= render 'favorite_form', feed: feed %>
+		</div>
+	<% end %>
+</div>

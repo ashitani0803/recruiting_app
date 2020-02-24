@@ -1,2 +1,17 @@
-<h1>Feeds#company_feed</h1>
-<p>Find me in app/views/feeds/company_feed.html.erb</p>
+<%= render 'companies/header', company: @company, headquarters: @headquarters %>
+<div>
+	<% @feeds.each do |feed| %>
+		<div>
+			<%= link_to company_path(@company) do %>
+				<%= attachment_image_tag @company, :logo, size: '600x180' %>
+				<%= @company.company_name %>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to feed_path(feed) do %>
+				<h3><%= feed.title %></h3>
+				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+	<% end %>
+</div>

@@ -1,2 +1,19 @@
-<h1>Recruits#company_index</h1>
-<p>Find me in app/views/recruits/company_index.html.erb</p>
+<%= render 'companies/header', company: @company, headquarters: @headquarters %>
+<div>
+	<% @recruits.each do |recruit| %>
+		<div>
+			<%= link_to recruit_path(recruit) do %>
+				<div><%= attachment_image_tag recruit, :image, size: '550x200' %></div>
+				<span><%= recruit.job_description %></span>
+				<h2><%= recruit.title %></h2>
+				<p><%= strip_tags(recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to company_path(@company) do %>
+				<%= attachment_image_tag @company, :logo, size: '50x50' %>
+				<%= @company.company_name %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

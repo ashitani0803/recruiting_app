@@ -13,7 +13,7 @@
       <h2>RecruitingApp</h2>
       <% if user_signed_in? %>
       <ul>
-        <li><%= link_to '募集', recruits_path %></li>
+        <li><%= link_to '募集一覧', recruits_path %></li>
         <li><%= link_to 'フィード', feeds_path %></li>
         <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
         <li>
@@ -21,9 +21,13 @@
             <%= text_field_tag :search, '', :placeholder => '検索' %>
             <%= button_tag type: 'submit', :body => nil do %>
               <i class="fas fa-search"></i>
-            <% end %> 
+            <% end %>
           <% end %>
         </li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %></li>
+        <% if current_user.authority_status == "admin" %>
+          <li><%= link_to '管理画面へ', admin_path(current_user.company) %></li>
+        <% end %>
       </ul>
       <% else %>
       <ul>

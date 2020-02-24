@@ -1,0 +1,24 @@
+<%= flash[:notice] %>
+<%= render 'sidebar', company: @company %>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>名前</th>
+            <th>ステータス</th>
+            <th></th>
+        </tr>
+    </thead>
+    <% @members.each do |member| %>
+        <tr>
+            <td><%= attachment_image_tag member, :image, format: 'jpg', size: '40x40' %></td>
+            <td><%= member.name %></td>
+            <% if member.authority_status == "admin" %>
+            <td><%= link_to '管理者権限剥奪', admin_remove_authority_path(@company, member), data: { confirm: "管理者権限を剥奪しますか？"}, method: :post %></td>
+            <% else %>
+            <td><%= link_to '管理者権限付与', admin_add_authority_path(@company, member), data: { confirm: "管理者権限を付与しますか？"}, method: :post %></td>
+            <% end %>
+            <td><%= link_to '社員登録解除', admin_remove_employee_path(@company, member), data: { confirm: 'この社員を登録解除しますか？'}, method: :post %></td>
+        </tr>
+　   <% end %>
+</table>

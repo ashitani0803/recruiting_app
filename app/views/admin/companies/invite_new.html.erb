@@ -1,0 +1,5 @@
+<%= render 'sidebar', company: @company %>
+<%= form_with url: admin_invite_path, method: :get do |f| %>
+    <%= f.email_field :email %>
+    <%= f.submit '招待する' %>
+<% end %>

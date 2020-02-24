@@ -1,2 +1,8 @@
-<h1>Feeds#show</h1>
-<p>Find me in app/views/feeds/show.html.erb</p>
+<div>
+	<div><%= attachment_image_tag @feed, :image, size: '800x350' %></div>
+	<div id="favorite_btn">
+		<%= render 'favorite_form', feed: @feed %>
+	</div>
+	<h2><%= @feed.title %></h2>
+	<p><%= @feed.body %></p>
+</div>

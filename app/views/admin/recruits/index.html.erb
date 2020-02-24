@@ -1,2 +1,13 @@
-<h1>Admin::Recruits#index</h1>
-<p>Find me in app/views/admin/recruits/index.html.erb</p>
+<%= render 'admin/companies/sidebar', company: @company %>
+<div>
+	<div><%= link_to '募集を作成する', new_admin_company_recruit_path %></div>
+	<% @recruits.each do |recruit| %>
+		<div>
+			<span><%= recruit.job_description %></span>
+			<%= link_to admin_company_recruit_path(@company, recruit) do %>
+				<h2><%= recruit.title %></h2>
+				<p><%= strip_tags(recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+	<% end %>
+</div>

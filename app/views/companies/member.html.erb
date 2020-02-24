@@ -1,2 +1,13 @@
-<h1>Companies#member</h1>
-<p>Find me in app/views/companies/member.html.erb</p>
+<%= render 'header', company: @company, headquarters: @headquarters %>
+<div>
+	<ul>
+		<% @members.each do |member| %>
+			<li>
+				<%= link_to user_path(member) do %>
+					<%= attachment_image_tag member, :image, size: '150x150' %>
+				<% end %>
+			</li>
+			<h4><%= member.name %></h4>
+		<% end %>
+	</ul>
+</div>

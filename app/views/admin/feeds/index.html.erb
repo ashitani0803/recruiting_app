@@ -1,2 +1,12 @@
-<h1>Admin::Feeds#index</h1>
-<p>Find me in app/views/admin/feeds/index.html.erb</p>
+<%= render 'admin/companies/sidebar', company: @company %>
+<div>
+	<div><%= link_to 'フィードを作成する', new_admin_company_feed_path %></div>
+	<% @feeds.each do |feed| %>
+		<div>
+			<%= link_to admin_company_feed_path(@company, feed) do %>
+				<h3><%= feed.title %></h3>
+				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+	<% end %>
+</div>

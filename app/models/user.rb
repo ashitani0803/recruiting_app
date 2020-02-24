@@ -6,7 +6,10 @@ class User < ApplicationRecord
 
   attachment :image
 
-  belongs_to :company
+  enum sex: { male: 0, female: 1}
+  enum authority_status: { admin: 0, general: 1}
+
+  belongs_to :company, optional: true
   has_many :follows, dependent: :destroy
   has_many :scouts, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -19,4 +22,5 @@ class User < ApplicationRecord
     return User.all unless search
     User.where(['name LIKE ?', "%#{search}%"])
   end
+
 end

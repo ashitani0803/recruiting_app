@@ -1,2 +1,56 @@
-<h1>Admin::Companies#edit</h1>
-<p>Find me in app/views/admin/companies/edit.html.erb</p>
+<%= render 'sidebar', company: @company %>
+<div>
+	<%= form_with model: @company, url: admin_company_path do |f| %>
+		<section>
+			<%= f.label :ロゴ %>
+			<%= f.attachment_field :logo %>
+		</section>
+		<section>
+			<%= f.label :設立年 %>
+			<%= f.number_field :establish_year %>
+		</section>
+		<section>
+			<%= f.label :設立月 %>
+			<%= f.text_area :establish_month %>
+		</section>
+		<section>
+			<%= f.label :リンク %>
+			<%= f.text_field :link %>
+		</section>
+		<section>
+			<%= f.label :ミッションタイトル %>
+			<%= f.text_field :mission_title %>
+		</section>
+		<section>
+			<%= f.label :ミッション本文 %>
+			<%= f.text_area :mission_body %>
+		</section>
+		<section>
+			<%= f.label :価値観 %>
+			<%= f.text_area :value %>
+		</section>
+		<section>
+			<%= f.label :なにをやっているのか %>
+			<%= f.text_area :what %>
+		</section>
+		<section>
+			<%= f.label :なぜやるのか %>
+			<%= f.text_field :why %>
+		</section>
+		<section>
+			<%= f.label :どうやっているのか %>
+			<%= f.text_field :how %>
+		</section>
+		<div class="companies">
+			<%= f.fields_for :addresses do |builder| %>
+				<%= render 'address_fields', f: builder %>
+			<% end %>
+		</div>
+		<div class="links">
+			<%= link_to_add_association '住所を追加', f, :addresses %>
+		</div>
+		<section>
+			<%= f.submit '更新' %>
+		</section>
+	<% end %>
+</div>

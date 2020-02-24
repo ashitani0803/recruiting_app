@@ -1,2 +1,20 @@
-<h1>Bookmarks#index</h1>
-<p>Find me in app/views/bookmarks/index.html.erb</p>
+<div>
+	<h3>保存した募集</h3>
+	<% @bookmarks.each do |bookmark| %>
+		<% recruit = bookmark.recruit %>
+		<div>
+			<%= link_to recruit_path(recruit) do %>
+				<div><%= attachment_image_tag recruit, :image, size: '550x200' %></div>
+				<span><%= recruit.job_description %></span>
+				<h2><%= recruit.title %></h2>
+				<p><%= strip_tags(recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to company_path(recruit.company) do %>
+				<%= attachment_image_tag recruit.company, :logo, size: '50x50' %>
+				<%= recruit.company.company_name %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

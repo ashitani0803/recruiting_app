@@ -3,4 +3,5 @@ class Feed < ApplicationRecord
     belongs_to :company
 
     attachment :image
+
 end

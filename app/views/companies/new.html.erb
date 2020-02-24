@@ -1,1 +1,11 @@
-<%= form_with model: @company, url: companies_path %>
+<%= form_with model: @company, url: companies_path do |f| %>
+    <%= f.label :会社名 %>
+    <%= f.text_field :company_name %><br>
+    <%= f.label :担当者名 %>
+    <%= f.text_field :person_name %><br>
+    <%= f.label :担当者メールアドレス %>
+    <%= f.text_field :email %><br>
+    <%= f.label :担当者電話番号 %>
+    <%= f.text_field :phone_number %><br>
+    <%= f.submit '登録' %>
+<% end %>

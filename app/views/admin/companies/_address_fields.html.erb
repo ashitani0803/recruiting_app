@@ -1,0 +1,15 @@
+<div class="nested-fields">
+	<%= f.radio_button :head_status, :head %>
+	<%= f.label :head_status, "本社" %>
+	<%= f.radio_button :head_status, :branch %>
+	<%= f.label :head_status, "支社" %><br>
+	<%= f.label :郵便番号 %>
+	<%= f.text_field :postal_code %><br>
+	<%= f.label :都道府県 %>
+	<%= f.text_field :prefecture %><br>
+	<%= f.label :市区町村 %>
+	<%= f.text_field :municipality %><br>
+	<%= f.label :建物 %>
+	<%= f.text_field :building %><br>
+	<%= link_to_remove_association "住所を削除", f %>
+</div>

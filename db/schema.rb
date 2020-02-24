@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_083632) do
+ActiveRecord::Schema.define(version: 2020_02_22_050103) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "head_status"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_083632) do
     t.string "prefecture"
     t.string "municipality"
     t.string "building"
+    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,6 +64,12 @@ ActiveRecord::Schema.define(version: 2020_02_17_083632) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "features", force: :cascade do |t|
+    t.string "feature"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.integer "company_id"
     t.string "title"
@@ -87,15 +94,20 @@ ActiveRecord::Schema.define(version: 2020_02_17_083632) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "recruit_features", force: :cascade do |t|
+    t.integer "recruit_id"
+    t.integer "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recruits", force: :cascade do |t|
     t.integer "company_id"
     t.string "title"
     t.text "do"
-    t.string "occupation"
+    t.integer "occupation"
     t.string "job_description"
-    t.string "employment_status"
-    t.string "feature"
-    t.boolean "overseas_status"
+    t.integer "employment_status"
     t.string "field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -136,6 +148,13 @@ ActiveRecord::Schema.define(version: 2020_02_17_083632) do
     t.text "introduction"
     t.string "educational_background"
     t.string "work_experience"
+    t.integer "company_id"
+    t.integer "birth_year"
+    t.integer "birth_month"
+    t.integer "birth_day"
+    t.integer "sex"
+    t.integer "authority_status"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

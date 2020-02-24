@@ -1,2 +1,20 @@
-<h1>Admin::Feeds#edit</h1>
-<p>Find me in app/views/admin/feeds/edit.html.erb</p>
+<%= render 'admin/companies/sidebar', company: @company %>
+<div>
+	<%= form_with model: @feed, url: admin_company_feed_path do |f| %>
+		<section>
+			<%= f.label :タイトル %>
+			<%= f.text_field :title %>
+		</section>
+		<section>
+			<%= f.label :画像 %>
+			<%= f.attachment_field :image %>
+		</section>
+		<section>
+			<%= f.label :本文 %>
+			<%= f.text_area :body %>
+		</section>
+		<section>
+			<%= f.submit '更新' %>
+		</section>
+	<% end %>
+</div>

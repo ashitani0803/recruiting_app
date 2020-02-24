@@ -1,2 +1,42 @@
-<h1>Admin::Recruits#edit</h1>
-<p>Find me in app/views/admin/recruits/edit.html.erb</p>
+<%= render 'admin/companies/sidebar', company: @company %>
+<div>
+	<%= form_with model: @recruit, url: admin_company_recruit_path do |f| %>
+		<section>
+			<%= f.label :タイトル %>
+			<%= f.text_field :title %>
+		</section>
+		<section>
+			<%= f.label :画像 %>
+			<%= f.attachment_field :image %>
+		</section>
+		<section>
+			<%= f.label :こんなことやります %>
+			<%= f.text_area :do %>
+		</section>
+		<section>
+			<%= f.label :詳細職種 %>
+			<%= f.text_field :job_description %>
+		</section>
+		<section>
+			<%= f.label :職種 %>
+			<%= f.select :occupation, Recruit.occupations_i18n.keys.map {|k| [I18n.t("enums.recruit.occupation.#{k}"), k]} %>
+		</section>
+		<section>
+			<%= f.label :雇用形態 %>
+			<%= f.select :employment_status, Recruit.employment_statuses_i18n.keys.map {|k| [I18n.t("enums.recruit.employment_status.#{k}"), k]} %>
+		</section>
+		<section>
+			<%= f.label :分野 %>
+			<%= f.text_field :field %>
+		</section>
+		<section>
+			<%= f.label :特徴 %>
+			<%= f.collection_check_boxes :feature_ids, @features, :id, :feature do |fe| %>
+				<%= fe.label { fe.check_box + fe.text } %>
+			<% end %>
+		</section>
+		<section>
+			<%= f.submit '更新' %>
+		</section>
+	<% end %>
+</div>

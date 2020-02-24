@@ -1,13 +1,19 @@
 class RecruitsController < ApplicationController
+  before_action :user_login?
+
   def index
     @recruits = Recruit.all
   end
 
   def show
     @recruit = Recruit.find(params[:id])
+    @company = @recruit.company
   end
 
   def company_index
+    @company = Company.find(params[:id])
+    @recruits = @company.recruits
+    @headquarters = @company.addresses.find_by(head_status: "head")
   end
 
   def search

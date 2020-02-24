@@ -1,2 +1,29 @@
-<h1>Companies#show</h1>
-<p>Find me in app/views/companies/show.html.erb</p>
+<%= render 'header', company: @company, headquarters: @headquarters %>
+<div>
+	<section>
+		<h2><%= @company.mission_title %></h2>
+		<p><%= @company.mission_body %></p>
+	</section>
+	<section>
+		<h2>価値観</h2>
+		<p><%= @company.value %></p>
+	</section>
+	<section>
+		<h2>メンバー</h2>
+		<h3><%= @company.company_name %>のメンバー</h3>
+		<ul>
+			<% @company.users.each do |member| %>
+				<li><%= attachment_image_tag member, :image, size: '150x150' %></li>
+				<h4><%= member.name %></h4>
+			<% end %>
+		</ul>
+	</section>
+	<section>
+		<p><%= attachment_image_tag @company, :logo, size: '70x70' %></p>
+		<h2><%= @company.company_name %></h2>
+		<p><%= @headquarters.prefecture %><%= @headquarters.municipality %><%= @headquarters.building %></p>
+		<p><a href="#{@company.link}"><%= @company.link %></a></p>
+		<p><%= @company.person_name %>が創業</p>
+		<p><%= @company.users.count %>人のメンバー</p>
+	</section>
+</div>

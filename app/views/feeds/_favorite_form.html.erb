@@ -1,0 +1,15 @@
+<% if favorite = current_user.favorites.find_by(feed_id: feed.id) %>
+	<li class="like_off">
+		<%= link_to feed_favorite_path(feed, favorite), method: :delete, remote: true do %>
+			<i class="fas fa-heart"></i>
+		<% end %>
+		<span><%= feed.favorites.count %>いいね</span>
+	</li>
+<% else %>
+	<li class="like_on">
+		<%= link_to feed_favorites_path(feed), method: :post, remote: true do %>
+			<i class="far fa-heart"></i>
+		<% end %>
+		<span><%= feed.favorites.count %>いいね</span>
+	</li>
+<% end %>

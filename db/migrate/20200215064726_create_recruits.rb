@@ -4,11 +4,9 @@ class CreateRecruits < ActiveRecord::Migration[5.2]
       t.integer :company_id
       t.string :title
       t.text :do
-      t.string :occupation
+      t.integer :occupation
       t.string :job_description
-      t.string :employment_status
-      t.string :feature
-      t.boolean :overseas_status
+      t.integer :employment_status
       t.string :field
 
       t.timestamps

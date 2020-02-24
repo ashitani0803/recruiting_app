@@ -1,2 +1,15 @@
-<h1>Companies#about</h1>
-<p>Find me in app/views/companies/about.html.erb</p>
+<%= render 'header', company: @company, headquarters: @headquarters %>
+<div>
+	<section>
+		<h2>なにをやっているのか</h2>
+		<p><%= @company.what %></p>
+	</section>
+	<section>
+		<h2>なぜやるのか</h2>
+		<p><%= @company.why %></p>
+	</section>
+	<section>
+		<h2>どうやっているのか</h2>
+		<p><%= @company.how %></p>
+	</section>
+</div>
