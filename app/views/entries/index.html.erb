@@ -1,2 +1,14 @@
-<h1>Entries#index</h1>
-<p>Find me in app/views/entries/index.html.erb</p>
+<div>
+    <ul>
+        <% @entries.each do |entry| %>
+            <li>
+                <div><%= attachment_image_tag entry.recruit.company, :logo, size: "50x50" %></div>
+                <h4><%= entry.recruit.company.company_name %></h4>
+                <p><%= strip_tags(entry.recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
+                <% room = Room.find_by(user_id: entry.user, company_id: entry.recruit.company) %>
+                <span><%= link_to 'メッセージへ', company_room_path(entry.company, room) %></span>
+            </li>
+        <% end %>
+    </ul>
+    
+</div> 

@@ -4,7 +4,7 @@
 	<a href="#{@company.link}"><%= company.link %></a>
 	<span><%= headquarters.prefecture %></span>
 	<div id="follow_btn">
-		<%= render 'follow_form', company: company %>
+		<%= render 'companies/follow_form', company: company %>
 	</div>
 	<nav>
 		<%= link_to 'ホーム', company_path(company) %>

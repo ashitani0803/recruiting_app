@@ -83,3 +83,5 @@ gem 'cocoon'
 gem 'jquery-rails'
 
 gem 'twitter'
+
+gem 'semantic-ui-sass'

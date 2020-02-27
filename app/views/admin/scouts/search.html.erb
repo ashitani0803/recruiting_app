@@ -1,2 +1,22 @@
-<h1>Admin::Scouts#search</h1>
-<p>Find me in app/views/admin/scouts/search.html.erb</p>
+<%= form_tag admin_scouts_search_path, method: :get do %>
+    <%= text_field_tag :search, '', :placeholder => '検索' %>
+    <%= button_tag type: 'submit', :body => nil do %>
+            <i class="fas fa-search"></i>
+    <% end %>
+<% end %>
+<% if params[:search] && @candidates.count > 0 %>
+    <p><%= @candidates.count %>人の候補者</p>
+    <div>
+        <% @candidates.each do |candidate| %>
+            <p><%= attachment_image_tag candidate, :image, size: "40x40" %></p>
+            <h3><%= candidate.name %></h3>
+            <h4>職歴</h4>
+            <p><%= candidate.work_experience %></p>
+            <h4>学歴</h4>
+            <p><%= candidate.educational_background %></p>
+            <h4>自己紹介</h4>
+            <p><%= strip_tags(candidate.introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
+            <div><%= link_to 'スカウトを送る', admin_scouts_path(candidate), method: :post, data: { confirm: "この人にスカウトを送りますか？" } %></div>
+        <% end %>
+    </div>
+<% end %>

@@ -10,6 +10,9 @@
 	<div>
 		<%= attachment_image_tag @recruit, :image, size: '900x350' %>
 	</div>
+	<div>
+		<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post %>
+	</div>
 	<div id="bookmark_btn">
 		<%= render 'bookmark_form', recruit: @recruit %>
 	</div>
@@ -17,7 +20,7 @@
 		<% if current_user.supports.find_by(recruit_id: @recruit.id) %>
 			応援済み
 		<% else %>
-			<%= link_to '応援する', recruit_supports_path(@recruit), method: :post %>
+			<%= link_to '応援する', recruit_supports_path(@recruit), method: :post, data: { confirm: " この募集をTwitterで応援しますか？" } %>
 		<% end %>
 	</div>
 	<div>

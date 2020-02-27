@@ -1,10 +1,18 @@
 class Admin::ScoutsController < ApplicationController
 	before_action :admin_user?
 
- 	def search
+	 def search
+		@candidates = User.scout_search(params[:search])
   	end
 
 	def create
+		@scout = @company.scouts.new(user_id: params[:user_id])
+		@scout.save!
+		@user = @scout.user
+		@company = current_user.company
+		@room = @company.rooms.new(user_id: @user.id)
+		@room.save
+		redirect_to admin_company_candidate_show_path(@company, @user)
 	end
 
 	private

@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show, :edit, :update]
-  resources :rooms, only: [:index, :show, :create]
 
+  post 'rooms/:room_id/messages' => 'messages#create', as: "messages"
   get 'search' => 'recruits#search'
   get 'entries' => 'entries#index'
   get 'bookmarks' => 'bookmarks#index'
   get 'follows' => 'follows#index'
-  post 'messages' => 'messages#create'
 
   resources :companies, only: [:show, :new, :create] do
     get 'users/:id/become_employee' => 'users#become_employee', as: 'become_employee'
+    resources :rooms, only: [:show]
     resources :follows, only: [:create, :destroy]
   end
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'companies/:id/members' => 'companies#member', as: 'member'
 
   resources :recruits, only: [:index, :show] do
-    resources :entries, only: [:create, :destroy]
+    resources :entries, only: [:create]
     resources :supports, only: [:create]
     resources :bookmarks, only: [:create, :destroy]
   end  
@@ -44,11 +44,11 @@ Rails.application.routes.draw do
     get 'companies/:id/users' => 'companies#employee_index', as: 'employee_index'
     get 'companies/:id/invite' => 'companies#invite', as: 'invite'
     get 'companies/:id/invite_new' => 'companies#invite_new', as: 'invite_new'
-    get 'recruits/:recruit_id/users/:id' => 'entries#candidate_show', as: 'candidate_show'
      
     resources :companies, only: [:edit, :update, :destroy] do
       resources :feeds
       resources :recruits
+      get 'candidates/:id' => 'entries#candidate_show', as: "candidate_show"
       get 'candidates' => 'entries#candidate_list'
     end 
 
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     post 'companies/:company_id/users/:id/remove_authority' => 'companies#remove_authority', as: 'remove_authority'
 
     get 'scouts/search' => 'scouts#search'
-    post 'users/:user_id/scouts' => 'scouts#create'
+    post 'users/:user_id/scouts' => 'scouts#create', as: 'scouts'
   end  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

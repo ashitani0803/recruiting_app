@@ -1,2 +1,28 @@
-<h1>Admin::Entries#candidate_list</h1>
-<p>Find me in app/views/admin/entries/candidate_list.html.erb</p>
+<%= render 'admin/companies/sidebar', company: @company %>
+<div>
+    <h3>候補者管理</h3>
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+    <% @recruits.each do |recruit| %>
+        <% recruit.entries.each do |entry| %>
+            <tbody>
+                <tr>
+                    <td><%= attachment_image_tag entry.user, :image, size: '50x50' %></td>
+                    <td><%= entry.user.name %></td>
+                    <td><%= entry.user.work_experience %></td>
+                    <td><%= strip_tags(entry.user.introduction.to_s).gsub(/[\n]/,"").strip.truncate(70) %></td>
+                    <td><%= link_to '詳細', admin_company_candidate_show_path(entry.recruit, entry.user) %></td>
+                </tr>
+            </tbody>  
+        <% end %>
+    <% end %>
+    </table>
+</div>

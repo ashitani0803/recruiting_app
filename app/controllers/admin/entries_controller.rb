@@ -2,9 +2,14 @@ class Admin::EntriesController < ApplicationController
 	before_action :admin_user?
 
   def candidate_list
+	@recruits = @company.recruits
   end
 
   def candidate_show
+	@candidate = User.find(params[:id])
+	@room = @company.rooms.find_by(user_id: @candidate.id)
+	@message = Message.new
+	@messages = @room.messages
   end
 
   private

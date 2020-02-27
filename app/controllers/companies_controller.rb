@@ -38,7 +38,7 @@ class CompaniesController < ApplicationController
       admin.save
       sign_in(admin)
       PasswordMailer.send_password(admin, generated_password).deliver
-      redirect_to admin_path(@company)
+      redirect_to edit_admin_company_path(@company)
     else
       render :new
     end

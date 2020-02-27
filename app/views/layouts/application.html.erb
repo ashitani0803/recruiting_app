@@ -17,7 +17,7 @@
         <li><%= link_to 'フィード', feeds_path %></li>
         <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
         <li>
-          <%= form_tag search_path do %>
+          <%= form_tag search_path, method: :get do %>
             <%= text_field_tag :search, '', :placeholder => '検索' %>
             <%= button_tag type: 'submit', :body => nil do %>
               <i class="fas fa-search"></i>

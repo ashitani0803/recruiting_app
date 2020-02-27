@@ -5,6 +5,7 @@ class Company < ApplicationRecord
     has_many :follows, dependent: :destroy
     has_many :scouts, dependent: :destroy
     has_many :recruits, dependent: :destroy
+    has_many :rooms, dependent: :destroy
 
     accepts_nested_attributes_for :addresses, allow_destroy: true
 

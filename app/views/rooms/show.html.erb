@@ -1,17 +1,16 @@
-<%= render 'admin/companies/sidebar', company: @company %>
 <h3>メッセージ</h3>
 <div>
-    <p><%= attachment_image_tag @candidate, :image, size: "50x50" %></p>
-    <h4><%= @candidate.name %></h4>
+    <p><%= attachment_image_tag @company, :logo, size: "50x50" %></p>
+    <h4><%= @company.company_name %></h4>
 </div>
 <div>
     <% @messages.each do |m| %>
         <% if m.is_user %>
-            <div class="left_message">
+            <div class="right_message">
                 <%= m.content %>
             </div>
         <% else %>
-            <div class="right_message">
+            <div class="left_message">
                 <%= m.content %>
             </div>
         <% end %>
