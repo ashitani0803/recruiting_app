@@ -10,14 +10,19 @@ class Admin::CompaniesController < ApplicationController
 
 	def update
 		if @company.update(company_params)
+			flash[:success] = "会社情報を更新しました。"
 			redirect_to admin_path(@admin)
 		else
+			flash.now[:alert] = "更新に失敗しました。"
 			render :edit
 		end
 	end
 
 	def destroy
-
+		@company = Company.find(params[:id])
+		@company.destroy
+		flash[:info] = "会社アカウントを削除しました。"
+		redirect_to recruits_path
 	end
 
 	def employee_index
@@ -33,10 +38,10 @@ class Admin::CompaniesController < ApplicationController
 			if user.company_id == nil || user.company_id != @company.id
 				CompanyMailer.send_mail(user, @company).deliver
 				redirect_to admin_employee_index_path
-				flash[:notice] = "招待メールを送りました。"
+				flash[:info] = "招待メールを送りました。"
 			else
+				flash.now[:alert] = "すでに社員登録されています。"
 				render :invite_new
-				flash[:alert] = "すでに社員登録されています。"
 			end
 		end
 	end
@@ -46,6 +51,7 @@ class Admin::CompaniesController < ApplicationController
 		user.company_id = @company.id
 		user.authority_status = "general"
 		user.save
+		flash[:success] = "社員登録に成功しました。"
 		redirect_to recruits_path
 	end
 
@@ -53,6 +59,7 @@ class Admin::CompaniesController < ApplicationController
 		member = User.find(params[:id])
 		member.company_id = nil
 		member.save
+		flash[:info] = "社員登録を解除しました。"
 		redirect_to admin_employee_index_path
 	end
 
@@ -60,12 +67,14 @@ class Admin::CompaniesController < ApplicationController
 		member = User.find(params[:id])
 		member.authority_status = "admin"
 		member.save
+		flash[:success] = "管理者権限を付与しました。"
 		redirect_to admin_path(member.company)
 	end
 
 	def remove_authority
 		@admin.authority_status = "general"
 		@admin.save
+		flash[:info] = "管理者権限を削除しました。"
 		redirect_to admin_path(current_user.company)
 	end
 

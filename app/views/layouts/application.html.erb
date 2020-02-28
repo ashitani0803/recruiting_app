@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RecruitingApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <head>
+        <title>RecruitingApp</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <header>
-      <h2>RecruitingApp</h2>
-      <% if user_signed_in? %>
-      <ul>
-        <li><%= link_to '募集一覧', recruits_path %></li>
-        <li><%= link_to 'フィード', feeds_path %></li>
-        <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
-        <li>
-          <%= form_tag search_path, method: :get do %>
-            <%= text_field_tag :search, '', :placeholder => '検索' %>
-            <%= button_tag type: 'submit', :body => nil do %>
-              <i class="fas fa-search"></i>
+    <body>
+        <header>
+            <ul class="header">
+                <li><strong id="logo">R</strong></li>
+        <% if user_signed_in? %>
+            <% if current_user.authority_status == "admin" %>
+                <li><%= link_to '管理画面へ', admin_path(current_user.company) %></li>
             <% end %>
-          <% end %>
-        </li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %></li>
-        <% if current_user.authority_status == "admin" %>
-          <li><%= link_to '管理画面へ', admin_path(current_user.company) %></li>
+                <li><%= link_to '募集一覧', recruits_path %></li>
+                <li><%= link_to 'フィード', feeds_path %></li>
+                <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
+                <li id="header-search">
+                    <%= form_tag search_path, method: :get do %>
+                        <%= text_field_tag :search, '', :placeholder => '人や会社、募集を検索' %>
+                        <%= button_tag type: 'submit', :body => nil do %>
+                            <i class="fas fa-search"></i>
+                        <% end %>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %>
+                </li>
+            </ul>
+        <% else %>
+            <ul>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <li><%= link_to '採用担当者の方', new_company_path %></li>
+            </ul>
         <% end %>
-      </ul>
-      <% else %>
-      <ul>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to '採用担当者の方', new_company_path %></li>
-      </ul>
-      <% end %>
-    </header>
-    <%= yield %>
-  </body>
+        </header>
+        <div class="flash-message">
+         <% flash.each do |key, value|%>
+            <%= content_tag(:div, value, class: key) %>
+         <% end %>
+        </div>
+        <%= yield %>
+    </body>
 </html>

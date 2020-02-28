@@ -7,11 +7,12 @@ class Admin::ScoutsController < ApplicationController
 
 	def create
 		@scout = @company.scouts.new(user_id: params[:user_id])
-		@scout.save!
+		@scout.save
 		@user = @scout.user
 		@company = current_user.company
 		@room = @company.rooms.new(user_id: @user.id)
 		@room.save
+		flash[:success] = "スカウトに成功しました。"
 		redirect_to admin_company_candidate_show_path(@company, @user)
 	end
 

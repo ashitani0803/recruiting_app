@@ -80,7 +80,7 @@ gem 'enum_help'
 
 gem 'cocoon'
 
-gem 'jquery-rails'
+gem 'paranoia'
 
 gem 'twitter'
 

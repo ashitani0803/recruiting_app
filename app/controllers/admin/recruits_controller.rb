@@ -18,26 +18,31 @@ class Admin::RecruitsController < ApplicationController
   def edit
   end
 
-	def create
+  def create
     @recruit = Recruit.new(recruit_params)
     @recruit.company_id = @company.id
     if @recruit.save
+      flash[:success] = "募集を作成しました。"
       redirect_to admin_company_recruit_path(@company, @recruit)
     else
+      flash.now[:alert] = "募集の作成に失敗しました。"
       render :new
     end
-	end
+  end
 
-	def update
+  def update
     if @feed.update(recruit_params)
+      flash[:success] = "募集w更新しました。"
       redirect_to admin_company_recruit_path(@company, @recruit)
     else
+      flash.now[:alert] = "募集の更新に失敗しました。"
       render :edit
     end
-	end
-	
-	def destroy
+  end
+  
+  def destroy
     @recruit.destroy
+    flash[:info] = "募集を削除しました。"
     redirect_to admin_company_recruits_path
   end
   

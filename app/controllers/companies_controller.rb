@@ -38,8 +38,10 @@ class CompaniesController < ApplicationController
       admin.save
       sign_in(admin)
       PasswordMailer.send_password(admin, generated_password).deliver
+      flash[:success] = "会社を登録しました。"
       redirect_to edit_admin_company_path(@company)
     else
+      flash.now[:alert] = "会社の登録に失敗しました。"
       render :new
     end
   end

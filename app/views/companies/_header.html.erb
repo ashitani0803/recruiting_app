@@ -1,7 +1,7 @@
 <div>
 	<p><%= attachment_image_tag company, :logo, size: '70x70' %></p>
 	<h2><%= company.company_name %></h2>
-	<a href="#{@company.link}"><%= company.link %></a>
+	<a href="<%= @company.link %>"><%= company.link %></a>
 	<span><%= headquarters.prefecture %></span>
 	<div id="follow_btn">
 		<%= render 'companies/follow_form', company: company %>

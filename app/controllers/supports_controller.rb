@@ -7,6 +7,7 @@ class SupportsController < ApplicationController
 		@support = current_user.supports.new(recruit_id: params[:recruit_id])
 		@support.save
 		@client.update("#{@recruit.title}\n#{url_for(@recruit)}")
+		flash[:success] = "募集を応援しました。"
 		redirect_to recruit_path(@recruit)
 	end
 

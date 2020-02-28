@@ -13,6 +13,7 @@ class EntriesController < ApplicationController
 		@company = @recruit.company
 		@room = current_user.rooms.new(company_id: @company.id)
 		@room.save
+		flash[:success] = "募集にエントリーしました。"
 		redirect_to company_room_path(@company, @room)
 	end
 

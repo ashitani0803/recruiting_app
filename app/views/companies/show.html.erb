@@ -22,7 +22,7 @@
 		<p><%= attachment_image_tag @company, :logo, size: '70x70' %></p>
 		<h2><%= @company.company_name %></h2>
 		<p><%= @headquarters.prefecture %><%= @headquarters.municipality %><%= @headquarters.building %></p>
-		<p><a href="#{@company.link}"><%= @company.link %></a></p>
+		<p><a href="<%= @company.link %>"><%= @company.link %></a></p>
 		<p><%= @company.person_name %>が創業</p>
 		<p><%= @company.users.count %>人のメンバー</p>
 	</section>

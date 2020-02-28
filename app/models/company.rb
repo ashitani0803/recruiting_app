@@ -7,6 +7,8 @@ class Company < ApplicationRecord
     has_many :recruits, dependent: :destroy
     has_many :rooms, dependent: :destroy
 
+    acts_as_paranoid
+
     accepts_nested_attributes_for :addresses, allow_destroy: true
 
     attachment :logo

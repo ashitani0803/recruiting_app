@@ -17,8 +17,10 @@ class Admin::FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
     @feed.company_id = @company.id
     if @feed.save
+      flash[:success] = "フィードを作成しました。"
       redirect_to admin_company_feed_path(@company, @feed)
     else
+      flash.now[:alert] = "フィードの作成に失敗しました。"
       render :new
     end
   end
@@ -26,18 +28,21 @@ class Admin::FeedsController < ApplicationController
   def edit
   end
 
-	def update
+  def update
     if @feed.update(feed_params)
+      flash[:success] = "フィードを更新しました。"
       redirect_to admin_company_feed_path(@company, @feed)
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
-	end
+  end
 
-	def destroy
+  def destroy
     @feed.destroy
+    flash[:info] = "フィードを削除しました。"
     redirect_to admin_company_feeds_path
-	end
+  end
 
   private
 

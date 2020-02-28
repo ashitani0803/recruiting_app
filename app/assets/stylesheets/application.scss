@@ -31,3 +31,44 @@
 li {
     list-style: none;
 }
+
+.header {
+	display: flex;
+	font-size: 18px;
+	background: #24282A;
+
+	li {
+		margin: 0 15px;
+		padding: 20px 0;
+
+		strong {
+			width: 22px;
+			padding: 10px 15px;
+			color: #fff;
+			background: #0d93e0;
+			line-height: 22px;
+			border-radius: 5px;
+		}
+
+		a {
+			color: #ccc;
+		}
+
+		input {
+			width: 200px;
+			background: #45494B;
+			color: #D7DBDF;
+			border-radius: 5px;
+			height: 36px;
+			border: 1px solid #45494B;
+			padding: 0 20px;
+			margin: 13px 0;
+			font-size: 15px;
+			font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+		}
+	}
+
+	#header-search {
+		padding: 0;
+	}
+}
