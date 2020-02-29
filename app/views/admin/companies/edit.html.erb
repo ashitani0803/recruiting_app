@@ -1,56 +1,76 @@
 <%= render 'sidebar', company: @company %>
-<div>
-	<%= form_with model: @company, url: admin_company_path do |f| %>
-		<section>
-			<%= f.label :ロゴ %>
-			<%= f.attachment_field :logo %>
+<div class="col-sm-7"> 
+	<%= form_with model: @company, url: admin_company_path, class: "form-horizontal" do |f| %>
+		<section　class="form-group">
+			<%= f.label :ロゴ, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.attachment_field :logo, class: "btn btn-file" %>
+			</div>
 		</section>
-		<section>
-			<%= f.label :設立年 %>
-			<%= f.number_field :establish_year %>
+		<section class="form-group">
+			<%= f.label :設立年, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.number_field :establish_year, class: "form-control" %>
+			</div>
 		</section>
-		<section>
-			<%= f.label :設立月 %>
-			<%= f.text_field :establish_month %>
+		<section class="form-group">
+			<%= f.label :設立月, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_field :establish_month, class: "form-control" %>
+			</div>
 		</section>
-		<section>
-			<%= f.label :リンク %>
-			<%= f.text_field :link %>
+		<section class="form-group">
+			<%= f.label :リンク, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_field :link, class: "form-control" %>
+			</div>
 		</section>
-		<section>
-			<%= f.label :ミッションタイトル %>
-			<%= f.text_field :mission_title %>
+		<section class="form-group">
+			<%= f.label :ミッションタイトル, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_field :mission_title, class: "form-control" %>		
+			</div>
 		</section>
-		<section>
-			<%= f.label :ミッション本文 %>
-			<%= f.text_area :mission_body %>
+		<section class="form-group">
+			<%= f.label :ミッション本文, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_area :mission_body, class: "form-control" %>		
+			</div>
 		</section>
-		<section>
-			<%= f.label :価値観 %>
-			<%= f.text_area :value %>
+		<section class="form-group">
+			<%= f.label :価値観, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_area :value, class: "form-control" %>		
+			</div>
 		</section>
-		<section>
-			<%= f.label :なにをやっているのか %>
-			<%= f.text_area :what %>
+		<section class="form-group">
+			<%= f.label :なにをやっているのか, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_area :what, class: "form-control" %>		
+			</div>
 		</section>
-		<section>
-			<%= f.label :なぜやるのか %>
-			<%= f.text_field :why %>
+		<section class="form-group">
+			<%= f.label :なぜやるのか, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_area :why, class: "form-control" %>		
+			</div>
 		</section>
-		<section>
-			<%= f.label :どうやっているのか %>
-			<%= f.text_field :how %>
+		<section class="form-group">
+			<%= f.label :どうやっているのか, class: "col-sm-4" %>
+			<div class="col-sm-8">
+				<%= f.text_area :how, class: "form-control" %>		
+			</div>
 		</section>
-		<div class="companies">
+		<section class="form-group">
 			<%= f.fields_for :addresses do |builder| %>
 				<%= render 'address_fields', f: builder %>
 			<% end %>
-		</div>
-		<div class="links">
+		</section>
+		<section class="links form-group">
 			<%= link_to_add_association '住所を追加', f, :addresses %>
-		</div>
-		<section>
-			<%= f.submit '更新' %>
+		</section>
+		<section class="form-group">
+			<%= f.submit '更新', class: "btn btn-success" %>
 		</section>
 	<% end %>
 </div>

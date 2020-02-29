@@ -57,7 +57,7 @@
                 <% end %>
             <% end %>
         </div>
-    <% elsif params[search_word] || params[:occupation] || params[:employment_status] || params[:feature_id] %>
+    <% elsif params[:search_word] || params[:occupation] || params[:employment_status] || params[:feature_id] %>
         <div>
             <% @recruits.each do |recruit| %>
                 <div>

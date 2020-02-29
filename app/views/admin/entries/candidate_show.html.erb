@@ -1,25 +1,27 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<h3>メッセージ</h3>
-<div>
-    <p><%= attachment_image_tag @candidate, :image, size: "50x50" %></p>
-    <h4><%= @candidate.name %></h4>
-</div>
-<div>
-    <% @messages.each do |m| %>
-        <% if m.is_user %>
-            <div class="left_message">
-                <%= m.content %>
-            </div>
-        <% else %>
-            <div class="right_message">
-                <%= m.content %>
-            </div>
+<div class="col-sm-7">
+    <h3>メッセージ</h3>
+    <div>
+        <p><%= attachment_image_tag @candidate, :image, size: "50x50" %></p>
+        <h4><%= @candidate.name %></h4>
+    </div>
+    <div>
+        <% @messages.each do |m| %>
+            <% if m.is_user %>
+                <div class="left_message">
+                    <%= m.content %>
+                </div>
+            <% else %>
+                <div class="right_message">
+                    <%= m.content %>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
-</div>
-<div>
-    <%= form_with model: [@room, @message], url: messages_path(@room) do |f| %>
-        <%= f.text_field :content %>
-        <%= f.submit '返信する' %>
-    <% end %>
+    </div>
+    <div>
+        <%= form_with model: [@room, @message], url: messages_path(@room) do |f| %>
+            <%= f.text_field :content %>
+            <%= f.submit '返信する', class: "btn btn-success" %>
+        <% end %>
+    </div>
 </div>

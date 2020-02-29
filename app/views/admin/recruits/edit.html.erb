@@ -1,42 +1,42 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div>
-	<%= form_with model: @recruit, url: admin_company_recruit_path do |f| %>
-		<section>
+<div class="co-sm-7">
+	<%= form_with model: @recruit, url: admin_company_recruit_path, class: "form-horizontal" do |f| %>
+		<section class="form-group">
 			<%= f.label :タイトル %>
 			<%= f.text_field :title %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :画像 %>
 			<%= f.attachment_field :image %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :こんなことやります %>
 			<%= f.text_area :do %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :詳細職種 %>
 			<%= f.text_field :job_description %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :職種 %>
 			<%= f.select :occupation, Recruit.occupations_i18n.keys.map {|k| [I18n.t("enums.recruit.occupation.#{k}"), k]} %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :雇用形態 %>
 			<%= f.select :employment_status, Recruit.employment_statuses_i18n.keys.map {|k| [I18n.t("enums.recruit.employment_status.#{k}"), k]} %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :分野 %>
 			<%= f.text_field :field %>
 		</section>
-		<section>
+		<section class="form-group">
 			<%= f.label :特徴 %>
 			<%= f.collection_check_boxes :feature_ids, @features, :id, :feature do |fe| %>
 				<%= fe.label { fe.check_box + fe.text } %>
 			<% end %>
 		</section>
-		<section>
-			<%= f.submit '更新' %>
+		<section class="form-group">
+			<%= f.submit '更新', class: "btn btn-success" %>
 		</section>
 	<% end %>
 </div>

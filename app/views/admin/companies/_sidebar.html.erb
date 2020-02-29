@@ -1,9 +1,30 @@
-<div>
+<div class="col-sm-3">
 	<ul>
-		<li><%= link_to 'ホーム', admin_path(company) %></li>
-		<li><%= link_to '募集', admin_company_recruits_path(company) %></li>
-		<li><%= link_to 'フィード', admin_company_feeds_path(company) %></li>
-		<li><%= link_to '候補者', admin_company_candidates_path(company) %></li>
-		<li><%= link_to 'スカウト', admin_scouts_search_path %></li>
+		<li class="sidebar-component"><%= company.company_name %></li>
+		<li class="sidebar-component">
+			<%= link_to admin_path(company) do %>
+				<i class="fas fa-home"></i><span>ホーム</span>
+			<% end %>
+		</li>
+		<li class="sidebar-component">
+			</i><%= link_to admin_company_recruits_path(company) do %>
+				<i class="fas fa-bullhorn"></i><span>募集</span>
+			<% end %>
+		</li>
+		<li class="sidebar-component">
+			</i><%= link_to admin_company_feeds_path(company) do %>
+				<i class="fas fa-newspaper"></i><span>フィード</span>
+			<% end %>
+		</li>
+		<li class="sidebar-component">
+			<%= link_to admin_company_candidates_path(company) do %>
+				<i class="fas fa-user-friends"></i><span>候補者</span>
+			<% end %>
+		</li>
+		<li class="sidebar-component">
+			<%= link_to admin_scouts_search_path do %>
+				<i class="fas fa-hands-helping"></i><span>スカウト</span>
+			<% end %>
+		</li>
 	</ul>
 </div>

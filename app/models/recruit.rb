@@ -13,6 +13,6 @@ class Recruit < ApplicationRecord
 
     def self.recruit_search(search)
         return Recruit.all unless search
-        Recruit.where(['title LIKE ? OR do LIKE ? OR job_description LIKE ?,' "%#{search}%", "%#{search}%", "%#{search}%"])
+        Recruit.where(['title LIKE ? OR do LIKE ? OR job_description LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
     end
 end

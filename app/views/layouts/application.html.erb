@@ -27,12 +27,12 @@
                         <% end %>
                     <% end %>
                 </li>
-                <li>
+                <li id="logout-right">
                     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %>
                 </li>
             </ul>
         <% else %>
-            <ul>
+            <ul class="header" id="logout">
                 <li><%= link_to 'ログイン', new_user_session_path %></li>
                 <li><%= link_to '採用担当者の方', new_company_path %></li>
             </ul>
@@ -43,6 +43,9 @@
             <%= content_tag(:div, value, class: key) %>
          <% end %>
         </div>
-        <%= yield %>
+        <div class="container">
+            <%= yield %>
+        </div>
+        
     </body>
 </html>

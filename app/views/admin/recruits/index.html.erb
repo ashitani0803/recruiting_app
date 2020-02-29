@@ -1,5 +1,5 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div>
+<div class="col-sm-7">
 	<div><%= link_to '募集を作成する', new_admin_company_recruit_path %></div>
 	<% @recruits.each do |recruit| %>
 		<div>

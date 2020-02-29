@@ -1,5 +1,5 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div>
+<div class="col-sm-7"> 
 	<div><%= link_to 'フィードを作成する', new_admin_company_feed_path %></div>
 	<% @feeds.each do |feed| %>
 		<div>

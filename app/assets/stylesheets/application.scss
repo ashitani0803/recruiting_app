@@ -20,8 +20,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "semantic-ui";
-
 * {
     margin: 0;
     padding: 0;
@@ -32,43 +30,95 @@ li {
     list-style: none;
 }
 
+.text-center {
+    text-align: center;
+}
+
+body {
+    background: #f9f9f9;
+}
+
+h1 {
+    font-size: 45px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+header {
+    position: relative;
+
+    #logout {
+        position: absolute;
+        right: 15px;
+    }
+}
+
 .header {
-	display: flex;
-	font-size: 18px;
-	background: #24282A;
+    display: flex;
+    font-size: 18px;
+    background: #24282a;
+    position: relative;
 
-	li {
-		margin: 0 15px;
-		padding: 20px 0;
+    li {
+        margin: 0 15px;
+        padding: 20px 0;
 
-		strong {
-			width: 22px;
-			padding: 10px 15px;
-			color: #fff;
-			background: #0d93e0;
-			line-height: 22px;
-			border-radius: 5px;
-		}
+        strong {
+            width: 22px;
+            padding: 10px 15px;
+            color: #fff;
+            background: #0d93e0;
+            line-height: 22px;
+            border-radius: 5px;
+        }
 
-		a {
-			color: #ccc;
-		}
+        a {
+            color: #ccc;
+        }
 
-		input {
-			width: 200px;
-			background: #45494B;
-			color: #D7DBDF;
-			border-radius: 5px;
-			height: 36px;
-			border: 1px solid #45494B;
-			padding: 0 20px;
-			margin: 13px 0;
-			font-size: 15px;
-			font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
-		}
-	}
+        input {
+            width: 200px;
+            background: #45494b;
+            color: #d7dbdf;
+            border-radius: 5px;
+            height: 43px;
+            border: 1px solid #45494b;
+            padding: 0 20px;
+            font-size: 15px;
+            margin: 11px 0;
+            font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
 
-	#header-search {
-		padding: 0;
-	}
+        button {
+            background: #45494b;
+            border-radius: 20px;
+            width: 43px;
+            height: 43px;
+            border: 0px;
+            position: relative;
+            top: 3px;
+        }
+
+        .fa-search {
+            font-size: 28px;
+            color: #d7dbdf;
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    #header-search {
+        padding: 0;
+    }
+
+    #logut {
+        position: absolute;
+        right: 15px;
+    }
+
+    #logout-right {
+        position: absolute;
+        right: 0;
+        margin-right: 15px;
+    }
 }

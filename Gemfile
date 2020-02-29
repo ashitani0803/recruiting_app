@@ -74,8 +74,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'jquery-rails'
 
-gem 'solargraph'
-
 gem 'enum_help'
 
 gem 'cocoon'
@@ -84,4 +82,3 @@ gem 'paranoia'
 
 gem 'twitter'
 
-gem 'semantic-ui-sass'

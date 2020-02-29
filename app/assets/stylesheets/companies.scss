@@ -1,3 +1,45 @@
 // Place all the styles related to the companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nested-fields {
+    padding: 0 15px;
+}
+
+.sidebar-component {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 20px;
+
+    span {
+        margin-left: 15px;
+    }
+
+    .fas {
+        font-size: 20px;
+    }
+
+    a {
+        font-size: 18px;
+        margin-left: 25px;
+        color: rgba(0, 0, 0, 0.84);
+    }
+}
+
+.sidebar-component:first-child {
+    font-size: 20px;
+    font-weight: 500;
+    border-top: none;
+    padding: 20px 40px;
+}
+
+#sub-title {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#top-sign-up {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}

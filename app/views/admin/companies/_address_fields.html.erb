@@ -1,15 +1,39 @@
 <div class="nested-fields">
-	<%= f.radio_button :head_status, :head %>
-	<%= f.label :head_status, "本社" %>
-	<%= f.radio_button :head_status, :branch %>
-	<%= f.label :head_status, "支社" %><br>
-	<%= f.label :郵便番号 %>
-	<%= f.text_field :postal_code %><br>
-	<%= f.label :都道府県 %>
-	<%= f.text_field :prefecture %><br>
-	<%= f.label :市区町村 %>
-	<%= f.text_field :municipality %><br>
-	<%= f.label :建物 %>
-	<%= f.text_field :building %><br>
-	<%= link_to_remove_association "住所を削除", f %>
+	<h3><strong>住所</strong></h3>
+	<section class="form-group">
+		<%= f.label :郵便番号, class: "col-sm-4" %>
+		<div class="col-sm-8">
+			<%= f.text_field :postal_code, class: "form-control" %><br>		
+		</div>
+	</section>
+	<section class="form-group">
+		<%= f.label :都道府県, class: "col-sm-4" %>
+		<div class="col-sm-8">
+			<%= f.text_field :prefecture, class: "form-control" %><br>
+		</div>
+	</section>
+	<section class="form-group">
+		<%= f.label :市区町村, class: "col-sm-4" %>
+		<div class="col-sm-8">
+			<%= f.text_field :municipality, class: "form-control" %><br>
+		</div>
+	</section>
+	<section class="form-group">
+		<%= f.label :建物, class: "col-sm-4" %>
+		<div class="col-sm-8">
+			<%= f.text_field :building, class: "form-control" %><br>
+		</div>
+	</section>
+	<section class="form-group">
+		<%= f.label :本社ステータス, class: "col-sm-4" %>
+		<div class="col-sm-8">
+			<%= f.radio_button :head_status, :head, class: "form-check-input" %>
+			<%= f.label :head_status, "本社" %>
+			<%= f.radio_button :head_status, :branch, class: "form-check-input" %>
+			<%= f.label :head_status, "支社" %>
+			<%= link_to_remove_association "住所を削除", f %>
+		</div>
+		
+	</section>
+	
 </div>

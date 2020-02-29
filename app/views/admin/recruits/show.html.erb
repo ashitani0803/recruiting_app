@@ -1,7 +1,7 @@
 <%= render 'admin/companies/sidebar', company: @company %>
 <div>
-	<span><%= link_to '編集', edit_admin_company_recruit_path(@company, @recruit) %></span>
-	<span><%= link_to '削除', admin_company_recruit_path(@company, @recruit),method: :delete, data: { confirm: "本当に削除しますか？" } %></span>
+	<span><%= link_to '編集', edit_admin_company_recruit_path(@company, @recruit), class: "btn btn-info" %></span>
+	<span><%= link_to '削除', admin_company_recruit_path(@company, @recruit),method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></span>
 	<span><%= @recruit.employment_status_i18n %></span>
 	<span><%= @recruit.job_description %></span>
 	<h2><%= @recruit.title %></h2>
