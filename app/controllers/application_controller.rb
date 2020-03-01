@@ -12,7 +12,12 @@ class ApplicationController < ActionController::Base
     protected
 
     def after_sign_in_path_for(resource)
-        recruits_path
+        if current_user.authority_status == "admin"
+            admin_path(current_user.company)
+        else
+            recruits_path
+        end
+        
     end
 
     def after_sign_out_path_for(resource)

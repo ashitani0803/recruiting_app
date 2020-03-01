@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'follows' => 'follows#index'
 
   resources :companies, only: [:show, :new, :create] do
-    get 'users/:id/become_employee' => 'users#become_employee', as: 'become_employee'
+    get 'become_employee' => 'users#become_employee', as: 'become_employee'
     resources :rooms, only: [:show]
     resources :follows, only: [:create, :destroy]
   end
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    post 'companies/:compnay_id/users/:id/add_employee' => 'companies#add_employee', as: 'add_employee'
+    post 'companies/:company_id/users/:id/add_employee' => 'companies#add_employee', as: 'add_employee'
     post 'companies/:company_id/users/:id/add_authority' => 'companies#add_authority', as: 'add_authority'
     get 'companies/:id/home' => 'companies#home'
     get 'companies/:id/users' => 'companies#employee_index', as: 'employee_index'

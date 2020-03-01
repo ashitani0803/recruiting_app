@@ -13,7 +13,12 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_update_params)
       flash[:success] = "プロフィールを更新しました。"
-      redirect_to recruits_path
+      if @user.authority_status = "admin"
+        admin_path(@user.company)
+      else
+        redirect_to recruits_path
+      end
+       
     else
       flash.now[:alert] = "プロフィールの更新に失敗しました。"
       render :edit
@@ -22,7 +27,11 @@ class UsersController < ApplicationController
 
   def become_employee
     @company = Company.find(params[:company_id])
-    @user = User.find(params[:id])
+    @user = current_user
+    if params[:company_id] && params[:id]
+      flash[:success] = "社員登録に成功しました。"
+      redirect_to recruits_path
+    end
   end
 
   private
