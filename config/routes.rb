@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'follows' => 'follows#index'
 
   resources :companies, only: [:show, :new, :create] do
-    get 'become_employee' => 'users#become_employee', as: 'become_employee'
+    get 'users/:id/become_employee' => 'users#become_employee', as: 'become_employee'
     resources :rooms, only: [:show]
     resources :follows, only: [:create, :destroy]
   end

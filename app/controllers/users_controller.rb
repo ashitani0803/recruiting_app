@@ -28,10 +28,6 @@ class UsersController < ApplicationController
   def become_employee
     @company = Company.find(params[:company_id])
     @user = current_user
-    if params[:company_id] && params[:id]
-      flash[:success] = "社員登録に成功しました。"
-      redirect_to recruits_path
-    end
   end
 
   private

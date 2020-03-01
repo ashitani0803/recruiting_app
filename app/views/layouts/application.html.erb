@@ -38,9 +38,9 @@
             </ul>
         <% end %>
         </header>
-        <div class="flash-message">
+        <div class="notification">
          <% flash.each do |key, value|%>
-            <%= content_tag(:div, value, class: key) %>
+            <%= content_tag(:p, value, class: key) %>
          <% end %>
         </div>
         <div class="container">

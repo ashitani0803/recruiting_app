@@ -1,5 +1,5 @@
 class Admin::CompaniesController < ApplicationController
-	before_action :admin_user?
+	before_action :admin_user?, except: [:add_employee]
 
 	def home
 	end
@@ -47,8 +47,9 @@ class Admin::CompaniesController < ApplicationController
 	end
 
 	def add_employee
+		company = Company.find(params[:company_id])
 		user = User.find(params[:id])
-		user.company_id = @company.id
+		user.company_id = company.id
 		user.authority_status = "general"
 		user.save
 		flash[:success] = "社員登録に成功しました。"
