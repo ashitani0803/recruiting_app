@@ -12,8 +12,8 @@
 				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
 			<% end %>
 		</div>
-		<div id="favorite_btn">
-			<%= render 'favorite_form', feed: feed %>
+		<div id="favorite_btn_<%= feed.id %>">
+			<%= render 'favorite_form', feed: feed, favorite: @favorite %>
 		</div>
 	<% end %>
 </div>

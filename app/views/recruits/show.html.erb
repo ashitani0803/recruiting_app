@@ -13,8 +13,8 @@
 	<div>
 		<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post %>
 	</div>
-	<div id="bookmark_btn">
-		<%= render 'bookmark_form', recruit: @recruit %>
+	<div id="bookmark_btn_<%= @recruit.id %>">
+		<%= render 'bookmark_form', recruit: @recruit, bookmark: @bookmark %>
 	</div>
 	<div>
 		<% if current_user.supports.find_by(recruit_id: @recruit.id) %>

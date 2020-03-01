@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     :passwords => 'users/passwords'
   }
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :destroy]
 
   post 'rooms/:room_id/messages' => 'messages#create', as: "messages"
   get 'search' => 'recruits#search'
@@ -30,11 +30,13 @@ Rails.application.routes.draw do
   resources :recruits, only: [:index, :show] do
     resources :entries, only: [:create]
     resources :supports, only: [:create]
-    resources :bookmarks, only: [:create, :destroy]
+    post 'bookmarks' => 'bookmarks#create'
+    delete 'bookmarks' => 'bookmarks#destroy'
   end  
 
   resources :feeds, only: [:index, :show] do
-    resources :favorites, only: [:create, :destroy]
+    post 'favorites' => 'favorites#create'
+    delete 'favorites' => 'favorites#destroy'
   end
 
   namespace :admin do

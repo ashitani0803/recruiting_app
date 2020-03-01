@@ -1,1 +1,1 @@
-$("#favorite_btn").html('<%= j (render("feeds/favorite_form", feed: @feed)) %>');
+$("#favorite_btn_<%= @feed.id %>").html('<%= j (render("feeds/favorite_form", feed: @feed)) %>');

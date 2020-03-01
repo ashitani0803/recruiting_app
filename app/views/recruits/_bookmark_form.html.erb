@@ -1,6 +1,6 @@
-<% if bookmark = current_user.bookmarks.find_by(recruit_id: recruit.id) %>
+<% if current_user.bookmarks.find_by(recruit_id: recruit.id) %>
 	<li class="bookmark_off">
-		<%= link_to recruit_bookmark_path(recruit, bookmark), method: :delete, remote: true do %>
+		<%= link_to recruit_bookmarks_path(recruit), method: :delete, remote: true do %>
 			<i class="fas fa-bookmark"></i>
 		<% end %>
 	</li>

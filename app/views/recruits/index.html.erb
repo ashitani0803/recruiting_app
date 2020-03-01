@@ -26,8 +26,8 @@
 				<%= attachment_image_tag recruit.company, :logo, size: '50x50' %>
 				<%= recruit.company.company_name %>
 			<% end %>
-			<div id="bookmark_btn">
-				<%= render 'bookmark_form', recruit: recruit %>
+			<div id="bookmark_btn_<%= recruit.id %>">
+				<%= render 'bookmark_form', recruit: recruit, bookmark: @bookmark %>
 			</div>
 		</div>
 	<% end %>

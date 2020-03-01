@@ -1,7 +1,8 @@
 <%= render 'sidebar', company: @company %>
 <div class="col-sm-7"> 
+	<h2 class="form-title">会社情報編集</h2>
 	<%= form_with model: @company, url: admin_company_path, class: "form-horizontal" do |f| %>
-		<section　class="form-group">
+		<section class="form-group">
 			<%= f.label :ロゴ, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.attachment_field :logo, class: "btn btn-file" %>
@@ -66,10 +67,10 @@
 				<%= render 'address_fields', f: builder %>
 			<% end %>
 		</section>
-		<section class="links form-group">
+		<section class="form-group text-center">
 			<%= link_to_add_association '住所を追加', f, :addresses %>
 		</section>
-		<section class="form-group">
+		<section class="form-group text-center">
 			<%= f.submit '更新', class: "btn btn-success" %>
 		</section>
 	<% end %>
