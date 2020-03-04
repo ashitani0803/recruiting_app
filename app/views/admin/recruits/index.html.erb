@@ -1,13 +1,47 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div class="col-sm-7">
-	<div><%= link_to '募集を作成する', new_admin_company_recruit_path %></div>
-	<% @recruits.each do |recruit| %>
-		<div>
-			<span><%= recruit.job_description %></span>
-			<%= link_to admin_company_recruit_path(@company, recruit) do %>
-				<h2><%= recruit.title %></h2>
-				<p><%= strip_tags(recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
-			<% end %>
-		</div>
-	<% end %>
+<div class="col-sm-9"> 
+	<h2>募集</h2>
+	<table class="index-table">
+        <thead>
+            <tr>
+                <th>タイトル</th>
+                <th>ステータス</th>
+                <th>候補者</th>
+				<th>削除</th>
+				<th><%= link_to '募集を作成', new_admin_company_recruit_path, class: "btn btn-info" %></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% @recruits.each do |recruit| %>
+                <tr>
+                    <td>
+						<%= attachment_image_tag recruit, :image, format: 'jpg', size: '50x50' %>
+						<div class="table-cell-inner">
+							<%= link_to edit_admin_company_recruit_path(recruit.company, recruit), class: "black-link" do %>
+								<%= recruit.title %> - <%= recruit.status_i18n %>
+							<% end %>
+							<div>
+								<%= link_to '募集を表示', recruit_path(recruit) %> | <%= link_to '募集を編集', edit_admin_company_recruit_path(recruit.company, recruit) %>
+							</div>
+						</div>	
+                    </td>
+                    <td>
+						<% if recruit.status == 'draft' %>
+				   			<div><%= recruit.status_i18n %></div>
+						   	<%= link_to '募集開始', admin_company_recruit_update_status_path(recruit.company, recruit), method: :post ,data: { confirm: "募集を開始しますか？" } %>
+						<% else %>
+							<div><%= recruit.status_i18n %></div>
+							<%= link_to '募集停止', admin_company_recruit_update_status_path(recruit.company, recruit), method: :post , data: { confirm: "募集を停止しますか？" } %>
+						<% end %>
+					</td>
+					<td><%= recruit.bookmarks.count %>人</td>
+					<td><%= link_to '×', admin_company_recruit_path(recruit.company, recruit), method: :delete, data: { confirm: "この募集を削除しますか？" }, class: "btn btn-default" %></td>
+					<td></td>
+                </tr>
+        　   <% end %>
+        </tbody>
+        
+    </table>
+
 </div>

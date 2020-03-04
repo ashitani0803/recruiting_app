@@ -1,19 +1,25 @@
 <%= render 'admin/companies/sidebar', company: @company %>
 <div class="col-sm-7">
+	<h2 class="text-center">フィードの編集</h2>
 	<%= form_with model: @feed, url: admin_company_feed_path do |f| %>
 		<section class="form-group">
-			<%= f.label :タイトル %>
-			<%= f.text_field :title %>
+			<%= f.label :画像 %>
+			<%= f.attachment_field :image, class: "btn btn-file" %>
 		</section>
 		<section class="form-group">
-			<%= f.label :画像 %>
-			<%= f.attachment_field :image %>
+			<%= f.label :タイトル %>
+			<%= f.text_field :title, class: "form-control" %>
 		</section>
+		
 		<section class="form-group">
 			<%= f.label :本文 %>
-			<%= f.text_area :body %>
+			<%= f.text_area :body, class: "form-control" %>
 		</section>
 		<section class="form-group">
+			<%= f.label :ステータス %><br>
+			<%= f.select :status, Feed.statuses_i18n.keys.map{|k|[I18n.t("enums.feed.status.#{k}"), k]}, {}, class: "form-control" %>
+		</section>
+		<section class="form-group text-center">
 			<%= f.submit '更新', class: "btn btn-success" %>
 		</section>
 	<% end %>

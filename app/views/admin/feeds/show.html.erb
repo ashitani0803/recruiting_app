@@ -1,8 +1,0 @@
-<%= render 'admin/companies/sidebar', company: @company %>
-<div class="col-sm-7">
-	<span><%= link_to '編集', edit_admin_company_feed_path(@company, @feed), class: "btn btn-info" %></span>
-	<span><%= link_to '削除', admin_company_feed_path(@company, @feed), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></span>
-	<div><%= attachment_image_tag @feed, :image, size: '400x100' %></div>
-	<h2><%= @feed.title %></h2>
-	<p><%= @feed.body %></p>
-</div>

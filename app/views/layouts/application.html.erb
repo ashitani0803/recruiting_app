@@ -39,10 +39,10 @@
         <% end %>
         </header>
         <div class="notification">
-         <% flash.each do |key, value|%>
-            <%= content_tag(:p, value, class: key) %>
-         <% end %>
-        </div>
+                <% flash.each do |key, value|%>
+                    <%= content_tag(:p, value, class: key) %>
+                <% end %>
+            </div>
         <div class="container">
             <%= yield %>
         </div>

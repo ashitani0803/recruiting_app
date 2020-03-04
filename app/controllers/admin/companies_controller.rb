@@ -69,14 +69,14 @@ class Admin::CompaniesController < ApplicationController
 		member.authority_status = "admin"
 		member.save
 		flash[:success] = "管理者権限を付与しました。"
-		redirect_to admin_path(member.company)
+		redirect_to admin_employee_index_path(member.company)
 	end
 
 	def remove_authority
 		@admin.authority_status = "general"
 		@admin.save
 		flash[:info] = "管理者権限を削除しました。"
-		redirect_to admin_path(current_user.company)
+		redirect_to admin_employee_index_path(@admin.company)
 	end
 
 	private

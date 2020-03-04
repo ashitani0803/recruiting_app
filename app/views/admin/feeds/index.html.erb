@@ -1,12 +1,47 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div class="col-sm-7"> 
-	<div><%= link_to 'フィードを作成する', new_admin_company_feed_path %></div>
-	<% @feeds.each do |feed| %>
-		<div>
-			<%= link_to admin_company_feed_path(@company, feed) do %>
-				<h3><%= feed.title %></h3>
-				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
-			<% end %>
-		</div>
-	<% end %>
+<div class="col-sm-9"> 
+	<h2>フィード</h2>
+	<table class="index-table">
+        <thead>
+            <tr>
+                <th>タイトル</th>
+                <th>ステータス</th>
+                <th>いいね</th>
+				<th>削除</th>
+				<th><%= link_to 'フィードを作成', new_admin_company_feed_path, class: "btn btn-info" %></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% @feeds.each do |feed| %>
+                <tr>
+                    <td>
+						<%= attachment_image_tag feed, :image, format: 'jpg', size: '50x50' %>
+						<div class="table-cell-inner">
+							<%= link_to edit_admin_company_feed_path(feed.company, feed), class: "black-link" do %>
+								<%= feed.title %> - <%= feed.status_i18n %>
+							<% end %>
+							<div>
+								<%= link_to 'フィードを表示', feed_path(feed) %> | <%= link_to 'フィードを編集', edit_admin_company_feed_path(feed.company, feed) %>
+							</div>
+						</div>	
+                    </td>
+                    <td>
+						<% if feed.status == 'draft' %>
+				   			<div><%= feed.status_i18n %></div>
+						   	<%= link_to '公開開始', admin_company_feed_update_status_path(feed.company, feed), method: :post , data: { confirm: "フィードを開始しますか？" } %>
+						<% else %>
+							<div><%= feed.status_i18n %></div>
+							<%= link_to '公開停止', admin_company_feed_update_status_path(feed.company, feed), method: :post , data: { confirm: "フィードを停止しますか？" } %>
+						<% end %>
+					</td>
+					<td><%= feed.favorites.count %></td>
+					<td><%= link_to '×', admin_company_feed_path(feed.company, feed), method: :delete, data: { confirm: "このフィードを削除しますか？" }, class: "btn btn-default" %></td>
+					<td></td>
+                </tr>
+        　   <% end %>
+        </tbody>
+        
+    </table>
+
 </div>

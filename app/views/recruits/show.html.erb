@@ -11,7 +11,11 @@
 		<%= attachment_image_tag @recruit, :image, size: '900x350' %>
 	</div>
 	<div>
-		<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post %>
+		<% if current_user.entries.find_by(recruit_id: @recruit.id) %>
+			<span>エントリー済み</span>
+		<% else %>
+			<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post, data: { confirm: "この募集にエントリーしますか？" } %>
+		<% end %>
 	</div>
 	<div id="bookmark_btn_<%= @recruit.id %>">
 		<%= render 'bookmark_form', recruit: @recruit, bookmark: @bookmark %>

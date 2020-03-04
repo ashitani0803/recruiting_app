@@ -1,65 +1,65 @@
 <%= render 'sidebar', company: @company %>
 <div class="col-sm-7"> 
-	<h2 class="form-title">会社情報編集</h2>
-	<%= form_with model: @company, url: admin_company_path, class: "form-horizontal" do |f| %>
-		<section class="form-group">
+	<h2 class="text-center">会社情報編集</h2>
+	<%= form_with model: @company, url: admin_company_path do |f| %>
+		<section class="form-group clearfix">
 			<%= f.label :ロゴ, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.attachment_field :logo, class: "btn btn-file" %>
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :設立年, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.number_field :establish_year, class: "form-control" %>
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :設立月, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.text_field :establish_month, class: "form-control" %>
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :リンク, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.text_field :link, class: "form-control" %>
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :ミッションタイトル, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.text_field :mission_title, class: "form-control" %>		
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :ミッション本文, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.text_area :mission_body, class: "form-control" %>		
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :価値観, class: "col-sm-4" %>
 			<div class="col-sm-8">
 				<%= f.text_area :value, class: "form-control" %>		
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :なにをやっているのか, class: "col-sm-4" %>
 			<div class="col-sm-8">
-				<%= f.text_area :what, class: "form-control" %>		
+				<%= f.text_area :what, class: "form-control" %>	
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :なぜやるのか, class: "col-sm-4" %>
 			<div class="col-sm-8">
-				<%= f.text_area :why, class: "form-control" %>		
+				<%= f.text_area :why, class: "form-control" %>	
 			</div>
 		</section>
-		<section class="form-group">
+		<section class="form-group clearfix">
 			<%= f.label :どうやっているのか, class: "col-sm-4" %>
 			<div class="col-sm-8">
-				<%= f.text_area :how, class: "form-control" %>		
+				<%= f.text_area :how, class: "form-control" %>	
 			</div>
 		</section>
 		<section class="form-group">

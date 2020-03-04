@@ -9,7 +9,7 @@ class BookmarksController < ApplicationController
 		@recruit = Recruit.find(params[:recruit_id])
 		@bookmark = current_user.bookmarks.new(recruit_id: params[:recruit_id])
 		@bookmark.save
-		flash.now[:suucess] = "あとで見るに追加しました"
+		flash.now[:success] = "あとで見るに追加しました"
 		render 'index.js.erb'
 	end
 

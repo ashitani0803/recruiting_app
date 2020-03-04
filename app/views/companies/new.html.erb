@@ -1,11 +1,29 @@
-<%= form_with model: @company, url: companies_path do |f| %>
-    <%= f.label :会社名 %>
-    <%= f.text_field :company_name %><br>
-    <%= f.label :担当者名 %>
-    <%= f.text_field :person_name %><br>
-    <%= f.label :担当者メールアドレス %>
-    <%= f.text_field :email %><br>
-    <%= f.label :担当者電話番号 %>
-    <%= f.text_field :phone_number %><br>
-    <%= f.submit '登録' %>
-<% end %>
+<div class="form-container">
+    <h2 class="text-center">会社登録フォーム</h2>
+    <%= form_with model: @company, url: companies_path do |f| %>
+        <div class="form-group">
+            <%= f.label :会社名 %>
+            <%= f.text_field :company_name, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label :担当者名 %>
+            <%= f.text_field :person_name, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label :担当者メールアドレス %>
+            <%= f.text_field :email, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+            <%= f.label :担当者電話番号 %>
+            <%= f.text_field :phone_number, class: "form-control" %>
+        </div>
+        
+        <div class="form-group text-center">
+            <%= f.submit '登録', class: "btn btn-success" %>
+        </div>
+    <% end %>
+</div>
+

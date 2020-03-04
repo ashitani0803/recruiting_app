@@ -1,3 +1,61 @@
 // Place all the styles related to the admin/companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.message-title {
+	img {
+		border-radius: 50%;
+	}
+
+	.message-user-name {
+		display: inline-block;
+
+		strong {
+			font-size: 18px;
+		}
+	}
+}
+
+.message-box {
+	.left-message {
+		display: flex;
+		padding: 15px 10px;
+
+		img {
+			border-radius: 50%;
+		}
+
+		.left-content {
+		position: relative;
+
+			p {
+				position: absolute;
+				padding: 9px 12px;
+				background: #eeeeee;
+				border-radius: 10px;
+			}
+		}
+	}
+
+	.right-message {
+		text-align: right;
+		.right-content {
+			display: inline-block;
+			float: none;
+
+			p {
+				display: inline-block;
+				padding: 9px 12px;
+				background: #00ff00;
+				border-radius: 10px;
+			}
+		}
+	}
+}
+.message-form {
+	margin-top: 40px;
+
+	form {
+		display: flex;
+	}
+}

@@ -1,12 +1,9 @@
 class Admin::FeedsController < ApplicationController
   before_action :admin_user?
-  before_action :find_feed, only: [:show, :edit, :update, :destroy]
+  before_action :find_feed, only: [:edit, :update, :destroy, :update_status]
 
   def index
     @feeds = @company.feeds
-  end
-
-  def show
   end
 
   def new
@@ -18,7 +15,7 @@ class Admin::FeedsController < ApplicationController
     @feed.company_id = @company.id
     if @feed.save
       flash[:success] = "フィードを作成しました。"
-      redirect_to admin_company_feed_path(@company, @feed)
+      redirect_to admin_company_feeds_path(@company)
     else
       flash.now[:alert] = "フィードの作成に失敗しました。"
       render :new
@@ -28,10 +25,20 @@ class Admin::FeedsController < ApplicationController
   def edit
   end
 
+  def update_status
+    if @feed.status == 'draft'
+      @feed.status = 'published'
+    else
+      @feed.status = 'draft'
+    end
+    @feed.save
+    redirect_to admin_company_feeds_path(@feed)
+  end
+
   def update
     if @feed.update(feed_params)
       flash[:success] = "フィードを更新しました。"
-      redirect_to admin_company_feed_path(@company, @feed)
+      redirect_to admin_company_feeds_path(@company)
     else
       flash.now[:alert] = "更新に失敗しました"
       render :edit
@@ -62,6 +69,6 @@ class Admin::FeedsController < ApplicationController
   end
 
   def feed_params
-    params.require(:feed).permit(:title, :image, :body)
+    params.require(:feed).permit(:title, :image, :body, :status)
   end
 end

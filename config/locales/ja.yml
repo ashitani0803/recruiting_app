@@ -1,23 +1,30 @@
 ja:
   activerecord:
   enums:
-    recruit:
-        occupation: 
-          engineer: エンジニア
-          designer: デザイナー
-          directer: ディレクター
-          cooperate: コーポレート・スタッフ
-          sales: セールス
-          marketing: マーケティング
-          writer: ライター
-          medical: 医療系
-          other: その他
-        employment_status:
-          new_graduate: 新卒採用
-          internship: インターン・学生バイト
-          mid_career: 中途採用
-          side_job: 副業・契約・委託
     address:
-      head_status: 
+      head_status:
         head: 本社
         branch: 支社
+    recruit:
+      occupation:
+        engineer: エンジニア
+        designer: デザイナー
+        directer: ディレクター
+        cooperate: コーポレート・スタッフ
+        sales: セールス
+        marketing: マーケティング
+        writer: ライター
+        medical: 医療系
+        other: その他
+      employment_status:
+        new_graduate: 新卒採用
+        internship: インターン・学生バイト
+        mid_career: 中途採用
+        side_job: 副業・契約・委託
+      status:
+        draft: 下書き
+        published: 公開中
+    feed:
+      status:
+        draft: 下書き
+        published: 公開中

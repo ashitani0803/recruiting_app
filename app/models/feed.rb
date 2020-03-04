@@ -4,4 +4,6 @@ class Feed < ApplicationRecord
 
     attachment :image
 
+    enum status: { draft: 0, published: 1 }
+
 end

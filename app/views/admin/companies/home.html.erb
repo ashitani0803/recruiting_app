@@ -1,10 +1,10 @@
 <%= render 'sidebar', company: @company %>
 <div class="col-sm-7">
-    <h2 id="info-title">会社・社員情報</h2>
-    <div class="company-info-link">
-        <%= link_to '会社情報の編集へ', edit_admin_company_path(@company) %>
+    <h2 class="text-center">会社・社員情報</h2>
+    <div class="home-link">
+        <%= link_to '会社情報の編集へ', edit_admin_company_path(@company), class: "home-company-btn" %>
     </div>
-    <div class="employee-info-link">
-        <%= link_to '社員一覧へ', admin_employee_index_path(@company) %>
+    <div class="home-link">
+        <%= link_to '社員一覧へ', admin_employee_index_path(@company), class: "home-employee-btn" %>
     </div>
 </div>

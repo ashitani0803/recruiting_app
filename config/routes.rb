@@ -48,8 +48,10 @@ Rails.application.routes.draw do
     get 'companies/:id/invite_new' => 'companies#invite_new', as: 'invite_new'
      
     resources :companies, only: [:edit, :update, :destroy] do
-      resources :feeds
-      resources :recruits
+      resources :feeds, except: [:show]
+      resources :recruits, except: [:show]
+      post 'feeds/:id/update_status' => 'feeds#update_status', as: 'feed_update_status'
+      post 'recruits/:id/update_status' => 'recruits#update_status', as: 'recruit_update_status'
       get 'candidates/:id' => 'entries#candidate_show', as: "candidate_show"
       get 'candidates' => 'entries#candidate_list'
     end 

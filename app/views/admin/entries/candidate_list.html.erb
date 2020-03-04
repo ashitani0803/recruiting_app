@@ -1,27 +1,37 @@
 <%= render 'admin/companies/sidebar', company: @company %>
-<div class="col-sm-7">
-    <h3>候補者管理</h3>
-    <table>
+<div class="col-sm-9">
+    <h2>候補者管理</h2>
+    <table id="candidate-table">
         <thead>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th>応募者</th>
+                <th>募集要項名</th>
+                <th>応募日</th>
+                <th>ツール</th>
             </tr>
         </thead>
     <% @recruits.each do |recruit| %>
         <% recruit.entries.each do |entry| %>
             <tbody>
                 <tr>
-                    <td><%= attachment_image_tag entry.user, :image, size: '50x50' %></td>
-                    <td><%= entry.user.name %></td>
-                    <td><%= entry.user.work_experience %></td>
-                    <td><%= strip_tags(entry.user.introduction.to_s).gsub(/[\n]/,"").strip.truncate(70) %></td>
-                    <td><%= link_to '詳細', admin_company_candidate_show_path(entry.recruit, entry.user) %></td>
+                    <td>
+                        <%= attachment_image_tag entry.user, :image, size: '50x50' %>
+                        <div class="table-cell-inner">
+                            <%= link_to entry.user.name, user_path(entry.user) %><br>
+                            <strong><%= entry.user.work_experience %></strong>
+                            <p><%= strip_tags(entry.user.introduction.to_s).gsub(/[\n]/,"").strip.truncate(70) %></p>
+                        </div>
+                    </td>
+                    <td><%= link_to recruit.title, recruit_path(recruit) %></td>
+                    <td><%= entry.created_at.strftime('%Y/%m/%d') %></td>
+                    <td>
+                        <%= link_to admin_company_candidate_show_path(recruit.company, entry.user), class: "btn btn-default" do %>
+                            <i class="fas fa-comments"></i>
+                        <% end %>
+                        <%= link_to '詳細', user_path(entry.user), class: "btn btn-info" %>
+                    </td>
                 </tr>
-            </tbody>  
+            </tbody> 
         <% end %>
     <% end %>
     </table>
