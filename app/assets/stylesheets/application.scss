@@ -217,3 +217,70 @@ header {
         border-bottom: 0;
     }
 }
+
+.message-title {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #e3e3e3;
+
+    img {
+        border-radius: 50%;
+    }
+
+    .message-user-name {
+        display: inline-block;
+
+        strong {
+            margin-left: 10px;
+            font-size: 18px;
+        }
+    }
+}
+
+.message-box {
+    background: #fff;
+    padding: 10px 0 5px;
+    border-left: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+
+    .left-message {
+        display: flex;
+        padding: 15px 10px;
+
+        img {
+            border-radius: 50%;
+        }
+
+        .left-content {
+            position: relative;
+
+            p {
+                position: absolute;
+                padding: 9px 12px;
+                background: #eeeeee;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .right-message {
+        text-align: right;
+        .right-content {
+            display: inline-block;
+            float: none;
+
+            p {
+                display: inline-block;
+                padding: 9px 12px;
+                background: #00ff00;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+.message-form {
+    margin-top: 0;
+    form {
+        display: flex;
+    }
+}

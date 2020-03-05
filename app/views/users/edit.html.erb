@@ -1,25 +1,28 @@
-<%= form_with model: @user, url: user_path do |f| %>
-	<section>
-		<%= f.label :写真を変更 %>
-		<%= f.attachment_field :image %>
-	</section>
-	<section>
-		<%= f.label :電話番号 %>
-		<%= f.text_field :phone_number %>
-	</section>
-	<section>
-		<%= f.label :学歴 %>
-		<%= f.text_field :educational_background %>
-	</section>
-	<section>
-		<%= f.label :職歴 %>
-		<%= f.text_field :work_experience %>
-	</section>
-	<section>
-		<%= f.label :紹介文 %>
-		 <%= f.text_area :introduction %>
-	</section>
-	<section>
-		<%= f.submit '更新' %>
-	</section>
-<% end %>
+<div class="form-container">
+	<h2 class="form-title">プロフィール編集</h2>
+	<%= form_with model: @user, url: user_path do |f| %>
+		<section class="form-group">
+			<%= f.label :写真を変更 %>
+			<%= f.attachment_field :image, class: "btn btn-file" %>
+		</section>
+		<section class="form-group">
+			<%= f.label :電話番号 %>
+			<%= f.text_field :phone_number, class: "form-control" %>
+		</section>
+		<section class="form-group">
+			<%= f.label :学歴 %>
+			<%= f.text_field :educational_background, class: "form-control" %>
+		</section>
+		<section class="form-group">
+			<%= f.label :職歴 %>
+			<%= f.text_field :work_experience, class: "form-control" %>
+		</section>
+		<section class="form-group">
+			<%= f.label :紹介文 %>
+			<%= f.text_area :introduction, class: "form-control" %>
+		</section>
+		<section class="form-group text-center">
+			<%= f.submit '更新', class: "btn btn-success" %>
+		</section>
+	<% end %>
+</div>

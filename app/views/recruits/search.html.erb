@@ -14,7 +14,7 @@
             <% @companies.each do |company| %>
                 <%= link_to company_path(company) do %>
                     <div>
-                        <h3><%= company.name %></h3>
+                        <h3><%= company.company_name %></h3>
                         <p><%= company.link %></p>
                         <p><%= company.mission_body %></p>
                     </div>
@@ -28,7 +28,9 @@
                 <%= link_to user_path(user) do %>
                     <div>
                         <h3><%= user.name %></h3>
-                        <p><%= user.company.name %></p>
+                        <% unless user.company_id == nil %>
+                            <p><%= user.company.company_name %></p>
+                        <% end %>
                     </div>
                 <% end %>
             <% end %>
@@ -96,7 +98,7 @@
             <% @companies.each do |company| %>
                 <%= link_to company_path(company) do %>
                     <div>
-                        <h3><%= company.name %></h3>
+                        <h3><%= company.company_name %></h3>
                         <p><%= company.link %></p>
                     </div>
                 <% end %>
@@ -105,11 +107,13 @@
         <div>
             <h2>プロフィール</h2>
             <% @users.each do |user| %>
-                <%= link_to user_path(user) do %>
+                <%= link_to user_path(user) do %>         
                     <div>
                         <h3><%= user.name %></h3>
-                        <p><%= user.company.name %></p>
-                    </div>
+                        <% unless user.company_id == nil %>
+                            <p><%= user.company.company_name %></p>
+                        <% end %>
+                    </div> 
                 <% end %>
             <% end %>
         </div>

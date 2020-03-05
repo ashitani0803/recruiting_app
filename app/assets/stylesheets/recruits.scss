@@ -1,3 +1,70 @@
 // Place all the styles related to the recruits controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.link-container {
+    width: 70%;
+    margin: 50px auto 0;
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    img {
+        width: 100%;
+        height: 230px;
+        margin-bottom: 25px;
+    }
+
+    .recruit-content {
+        .recruit-tags {
+            .job-description {
+                border: 1px solid #24282a;
+                border-radius: 15px;
+            }
+
+            span {
+                color: #24282a;
+                padding: 8px;
+            }
+        }
+
+        h2 {
+            color: #222222;
+        }
+
+        p {
+            color: grey;
+        }
+    }
+}
+
+.company-info {
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #aaa;
+
+    img {
+        border-radius: 50%;
+    }
+
+    p {
+        display: inline-block;
+        color: #24282a;
+        font-weight: bold;
+        margin-left: 15px;
+    }
+
+    .bookmark-link {
+        display: inline-block;
+        position: absolute;
+        top: 17px;
+        right: 15px;
+
+        i {
+            font-size: 20px;
+            color: #aaa;
+        }
+    }
+}

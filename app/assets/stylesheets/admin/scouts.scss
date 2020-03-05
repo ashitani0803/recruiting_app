@@ -1,3 +1,53 @@
 // Place all the styles related to the admin/scouts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.scout-form {
+    width: 70%;
+    margin: 0 auto 30px;
+
+    input {
+        display: inline-block;
+        width: 80%;
+    }
+
+    button {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        color: #555555;
+    }
+}
+
+.candidate-result {
+    width: 70%;
+    margin: 0 auto 30px;
+    font-size: 18px;
+}
+
+.candidate-cell {
+    padding: 20px 30px;
+    background: #fff;
+    width: 70%;
+    margin: 0 auto 50px;
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 40px;
+        border-radius: 50%;
+    }
+
+    .candidate-title {
+        margin-left: 70px;
+        display: inline-block;
+    }
+
+    .candidate-info {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .scout-link {
+        text-align: right;
+    }
+}

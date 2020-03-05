@@ -28,9 +28,10 @@ class RecruitsController < ApplicationController
       @companies = Company.company_search(params[:search])
       @users = User.user_search(params[:search])
     else
-      recruits = []
-      recruits = Recruit.where(occupation: params[:occupation], employment_status: parmas[:employment_status])
+      results = []
+      recruits = Recruit.where(occupation: params[:occupation], employment_status: params[:employment_status])
       if params[:search_word]
+        @recruits = []
         words = Recruit.recruit_search(params[:search_word])
         recruits.each do |r|
           recruit_features = r.recruit_features.where(feature_id: params[:feature_id])
@@ -40,15 +41,22 @@ class RecruitsController < ApplicationController
           @recruits = words & results
         end
       else
+        @recruits = Recruit.recruit_search(params[:search])
+        @companies = Company.company_search(params[:search])
+        @users = User.user_search(params[:search])
+=begin        
+        @recruits = []
         recruits.each do |r|
           recruit_features = r.recruit_features.where(feature_id: params[:feature_id])
           recruit_features.each do |rf|
             @recruits << rf.recruit
           end
         end         
+
+=end
       end
-      
     end
+
   end
 end
 
