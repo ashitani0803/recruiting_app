@@ -2,13 +2,13 @@
     <h2>検索</h2>
     <ul>
         <li><%= link_to 'すべて', search_path %></li>
-        <li><%= link_to '会社', search_path, :company => 'company' %></li>
-        <li><%= link_to 'プロフィール', search_path, :user => 'user' %></li>
-        <li><%= link_to '募集', search_path, :recruit => 'recruit' %></li>
+        <li><%= link_to '会社', search_path(id: 2) %></li>
+        <li><%= link_to 'プロフィール', search_path(id: 3) %></li>
+        <li><%= link_to '募集', search_path(id: 1) %></li>
     </ul>
 </div>
 <div>
-    <% if params[:company] %>
+    <% if params[:id] == "2" %>
         <div>
             <h2>会社</h2>
             <% @companies.each do |company| %>
@@ -21,7 +21,7 @@
                 <% end %>
             <% end %>
         </div>
-    <% elsif params[:user] %>
+    <% elsif params[:id] == "3" %>
         <div>
             <h2>プロフィール</h2>
             <% @users.each do |user| %>
@@ -35,7 +35,7 @@
                 <% end %>
             <% end %>
         </div>
-    <% elsif params[:recruit] %>
+    <% elsif params[:id] == "1" %>
         <div>
             <h2>募集</h2>
             <% @recruits.each do |recruit| %>
@@ -84,7 +84,7 @@
     <% else %>
         <div>
             <h2>募集</h2>
-            <% @recruits.each do |recruit| %>
+            <% @recruits.sample(1).each do |recruit| %>
                 <%= link_to recruit_path(recruit) do %>
                     <div>
                         <span><%= recruit.occupation %></span>
@@ -92,10 +92,11 @@
                     </div>
                 <% end %>
             <% end %>
+            <div><%= link_to 'もっとみる', search_path(id: 1) %></div>
         </div>
         <div>
             <h2>会社</h2>
-            <% @companies.each do |company| %>
+            <% @companies.sample(5).each do |company| %>
                 <%= link_to company_path(company) do %>
                     <div>
                         <h3><%= company.company_name %></h3>
@@ -103,10 +104,11 @@
                     </div>
                 <% end %>
             <% end %>
+            <div><%= link_to 'もっとみる', search_path(id: 2) %></div>
         </div>
         <div>
             <h2>プロフィール</h2>
-            <% @users.each do |user| %>
+            <% @users.sample(5).each do |user| %>
                 <%= link_to user_path(user) do %>         
                     <div>
                         <h3><%= user.name %></h3>
@@ -116,6 +118,7 @@
                     </div> 
                 <% end %>
             <% end %>
+            <div><%= link_to 'もっとみる', search_path(id: 3) %></div>
         </div>
     <% end %>
 </div>

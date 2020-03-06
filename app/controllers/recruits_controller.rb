@@ -17,11 +17,11 @@ class RecruitsController < ApplicationController
   end
 
   def search
-    if params[:company]
+    if params[:id] == "2"
       @companies = Company.all
-    elsif params[:user]
+    elsif params[:id] == "3"
       @users = User.all
-    elsif params[:recruit]
+    elsif params[:id] == "1"
       @recruits = Recruit.all
     elsif params[:search]
       @recruits = Recruit.recruit_search(params[:search])
