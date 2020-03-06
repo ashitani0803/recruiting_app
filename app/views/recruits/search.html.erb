@@ -1,72 +1,89 @@
-<div>
-    <h2>検索</h2>
-    <ul>
-        <li><%= link_to 'すべて', search_path %></li>
-        <li><%= link_to '会社', search_path(id: 2) %></li>
-        <li><%= link_to 'プロフィール', search_path(id: 3) %></li>
-        <li><%= link_to '募集', search_path(id: 1) %></li>
-    </ul>
+<div class="col-sm-4">
+    <div class="search-container">
+        <h3>検索</h3>
+        <ul>
+            <li>
+                <%= link_to search_path do %>
+                    <i class="fas fa-th"></i><span>すべて</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to search_path(id: 2) do %>
+                    <i class="far fa-building"></i><span>会社</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to search_path(id: 3) do %>
+                    <i class="fas fa-user-alt"></i><span>プロフィール</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to search_path(id: 1) do %>
+                    <i class="fas fa-briefcase"></i><span>募集</span>
+                <% end %>
+            </li>
+        </ul>
+    </div>  
+    
 </div>
-<div>
+<div class="col-sm-8">
     <% if params[:id] == "2" %>
-        <div>
-            <h2>会社</h2>
-            <% @companies.each do |company| %>
+        <div class="result-container">
+            <h3>会社</h3>
+            <% @companies.sample(5).each do |company| %>
                 <%= link_to company_path(company) do %>
-                    <div>
-                        <h3><%= company.company_name %></h3>
-                        <p><%= company.link %></p>
-                        <p><%= company.mission_body %></p>
-                    </div>
+                    <div class="result-body">
+                        <%= attachment_image_tag company, :logo, size: "80x80" %>
+                        <div class="result-content">
+                            <h4><%= company.company_name %></h4>
+                            <p><%= company.link %></p>
+                            <p><%= company.mission_body %></p>
+                        </div>
+                    </div>                 
                 <% end %>
             <% end %>
         </div>
+        
     <% elsif params[:id] == "3" %>
-        <div>
-            <h2>プロフィール</h2>
-            <% @users.each do |user| %>
-                <%= link_to user_path(user) do %>
-                    <div>
-                        <h3><%= user.name %></h3>
-                        <% unless user.company_id == nil %>
-                            <p><%= user.company.company_name %></p>
-                        <% end %>
-                    </div>
+        <div class="result-container">
+            <h3>プロフィール</h3>
+            <% @users.sample(5).each do |user| %>
+                <%= link_to user_path(user) do %> 
+                    <div class="result-body">
+                        <%= attachment_image_tag user, :image, size: "80x80" %>        
+                        <div class="result-content">
+                            <h4><%= user.name %></h4>
+                            <% unless user.company_id == nil %>
+                                <p><%= user.company.company_name %></p>
+                            <% end %>
+                        </div> 
+                    </div>                    
                 <% end %>
             <% end %>
         </div>
     <% elsif params[:id] == "1" %>
-        <div>
-            <h2>募集</h2>
-            <% @recruits.each do |recruit| %>
+        <div class="result-container">
+            <h3>募集</h3>
+            <% @recruits.sample(1).each do |recruit| %>
                 <%= link_to recruit_path(recruit) do %>
-                    <div>
-                        <%= attachment_image_tag recruit, :image, size: '500x20' %>
-                        <span><%= recruit.occupation %></span>
-                        <h3><%= recruit.title %></h3>
-                        <p><%= recruit.do %></p>
-                    </div>
-                <% end %>
-                <%= link_to company_path(recruit.company) do %>
-                    <div>
-                        <%= attachment_image_tag recruit.company, :logo, size: '50x50' %>
-                        <%= link_to recruit.company.company_name, company_path(recruit.company) %>
-                        #本社のある住所を取得
-                        <% if address = recruit.company.addresses.find_by(head_status: 1) %>
-                            <p><%= address.prefecture %></p>
-                        <% end %>
+                    <div class="result-body">
+                        <%= attachment_image_tag recruit, :image, size: "80x80" %>
+                        <div class="result-content">
+                            <span><%= recruit.occupation_i18n %></span>
+                            <h4><%= recruit.title %></h4>
+                        </div>
                     </div>
                 <% end %>
             <% end %>
         </div>
     <% elsif params[:search_word] || params[:occupation] || params[:employment_status] || params[:feature_id] %>
-        <div>
+        <div class="result-container">
             <% @recruits.each do |recruit| %>
                 <div>
                     <%= link_to recruit_path(recruit) do %>
                         <div><%= attachment_image_tag recruit, :image, size: '550x200' %></div>
                         <span><%= recruit.job_description %></span>
-                        <h2><%= recruit.title %></h2>
+                        <h4><%= recruit.title %></h4>
                         <p><%= strip_tags(recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
                     <% end %>
                 </div>
@@ -82,43 +99,59 @@
             <% end %>
         </div>
     <% else %>
-        <div>
-            <h2>募集</h2>
+        <div class="result-container">
+            <h3>募集</h3>
             <% @recruits.sample(1).each do |recruit| %>
                 <%= link_to recruit_path(recruit) do %>
-                    <div>
-                        <span><%= recruit.occupation %></span>
-                        <h3><%= recruit.title %></h3>
+                    <div class="result-body">
+                        <%= attachment_image_tag recruit, :image, size: "80x80" %>
+                        <div class="result-content">
+                            <span><%= recruit.occupation_i18n %></span>
+                            <h4><%= recruit.title %></h4>
+                        </div>
                     </div>
                 <% end %>
             <% end %>
-            <div><%= link_to 'もっとみる', search_path(id: 1) %></div>
+            <% if @recruits.size > 1 %>
+                <div class="more"><%= link_to 'もっとみる', search_path(id: 1) %></div>
+            <% end %>
         </div>
-        <div>
-            <h2>会社</h2>
+        <div class="result-container">
+            <h3>会社</h3>
             <% @companies.sample(5).each do |company| %>
                 <%= link_to company_path(company) do %>
-                    <div>
-                        <h3><%= company.company_name %></h3>
-                        <p><%= company.link %></p>
-                    </div>
+                    <div class="result-body">
+                        <%= attachment_image_tag company, :logo, size: "80x80" %>
+                        <div class="result-content">
+                            <h4><%= company.company_name %></h4>
+                            <p><%= company.link %></p>
+                            <p><%= company.mission_body %></p>
+                        </div>
+                    </div>                 
                 <% end %>
             <% end %>
-            <div><%= link_to 'もっとみる', search_path(id: 2) %></div>
+            <% if @companies.size > 1 %>
+                <div class="more"><%= link_to 'もっとみる', search_path(id: 2) %></div>
+            <% end %>
         </div>
-        <div>
-            <h2>プロフィール</h2>
+        <div class="result-container">
+            <h3>プロフィール</h3>
             <% @users.sample(5).each do |user| %>
-                <%= link_to user_path(user) do %>         
-                    <div>
-                        <h3><%= user.name %></h3>
-                        <% unless user.company_id == nil %>
-                            <p><%= user.company.company_name %></p>
-                        <% end %>
-                    </div> 
+                <%= link_to user_path(user) do %> 
+                    <div class="result-body">
+                        <%= attachment_image_tag user, :image, size: "80x80" %>        
+                        <div class="result-content">
+                            <h4><%= user.name %></h4>
+                            <% unless user.company_id == nil %>
+                                <p><%= user.company.company_name %></p>
+                            <% end %>
+                        </div> 
+                    </div>                    
                 <% end %>
             <% end %>
-            <div><%= link_to 'もっとみる', search_path(id: 3) %></div>
+            <% if @users.size > 1 %>
+                <div class="more"><%= link_to 'もっとみる', search_path(id: 3) %></div>
+            <% end %>
         </div>
     <% end %>
 </div>

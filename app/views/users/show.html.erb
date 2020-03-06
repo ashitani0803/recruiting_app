@@ -1,6 +1,8 @@
 <div>
 	<%= attachment_image_tag @user, :image, size: "120x120" %>
-	<span><%= @user.company.company_name %></span>
+	<% unless @user.company_id == nil %>
+		<span><%= @user.company.company_name %></span>
+	<% end %>
 	<span><%= @user.created_at.strftime('%Y/%m/%d') %>に登録</span>
 </div>
 <div>

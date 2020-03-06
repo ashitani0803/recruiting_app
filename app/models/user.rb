@@ -22,12 +22,12 @@ class User < ApplicationRecord
 
   def self.user_search(search)
     return User.all unless search
-    User.where(['name LIKE ?', "%#{search}%"])
+    User.where(['name LIKE ? OR introduction LIKE ? OR educational_background LIKE ? OR work_experience LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
   end
 
   def self.scout_search(search)
       if search
-          User.where(['introduction LIKE ? OR educational_background LIKE ? OR work_experience LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+          User.where(['name LIKE ? OR introduction LIKE ? OR educational_background LIKE ? OR work_experience LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
       end
   end
 
