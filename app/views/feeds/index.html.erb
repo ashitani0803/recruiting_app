@@ -10,15 +10,15 @@
 					<%= render 'companies/follow_form', company: feed.company %>
 				</div>
 			</div>
+		<%= link_to feed_path(feed) do %>
 			<div class="feed-img">
 				<%= attachment_image_tag feed, :image, size: "600x180" %>
 			</div>
-			<div class="feed-content">
-				<%= link_to feed_path(feed) do %>
-					<h3><%= feed.title %></h3>
-					<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
-				<% end %>
+			<div class="feed-content">	
+				<h3><%= feed.title %></h3>
+				<p><%= strip_tags(feed.body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
 			</div>
+		<% end %>
 			<div id="favorite_btn_<%= feed.id %>" class="fav-container">
 				<%= render 'favorite_form', feed: feed, favorite: @favorite %>
 			</div>

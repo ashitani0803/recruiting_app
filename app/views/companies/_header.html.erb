@@ -1,16 +1,19 @@
-<div>
-	<p><%= attachment_image_tag company, :logo, size: '70x70' %></p>
-	<h2><%= company.company_name %></h2>
-	<a href="<%= @company.link %>"><%= company.link %></a>
-	<span><%= headquarters.prefecture %></span>
-	<div id="follow_btn">
-		<%= render 'companies/follow_form', company: company %>
+<div class="company-header">
+	<%= attachment_image_tag company, :logo, size: '100x100' %>
+	<div class="company-header-info">
+		<h2><%= company.company_name %></h2>
+		<div id="follow_btn">
+			<%= render 'companies/follow_form', company: company %>
+		</div>
+		<a href="<%= @company.link %>" class="company-header-link"><%= company.link %></a>
+		<span class="company-head"><i class="fas fa-map-marker-alt"></i><%= headquarters.prefecture %></span>
 	</div>
+		
 	<nav>
-		<%= link_to 'ホーム', company_path(company) %>
-		<%= link_to '私たちについて', about_path(company) %>
-		<%= link_to 'メンバー', member_path(company) %>
-		<%= link_to 'ストーリー', company_feed_path(company) %>
-		<%= link_to '募集', company_index_path(company) %>
+		<li><%= link_to 'ホーム', company_path(company) %></li>
+		<li><%= link_to '私たちについて', about_path(company) %></li>
+		<li><%= link_to 'メンバー', member_path(company) %></li>
+		<li><%= link_to 'ストーリー', company_feed_path(company) %></li>
+		<li><%= link_to '募集', company_index_path(company) %></li>
 	</nav>
 </div>

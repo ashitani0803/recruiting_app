@@ -152,3 +152,165 @@
 .result-container:last-child {
     margin-bottom: 80px;
 }
+
+.recruit-show-container {
+    width: 900px;
+    margin: 50px auto;
+
+    .recruit-show-header {
+        span:first-child {
+            padding: 5px 10px;
+            border: 1px solid #4a4949;
+            border-radius: 15px;
+            color: #4a4949;
+        }
+
+        span:last-child {
+            color: #4a4949;
+            margin-left: 5px;
+        }
+    }
+
+    h2 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .recruit-show-company {
+        margin-bottom: 20px;
+
+        img {
+            border-radius: 50%;
+        }
+
+        p {
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+            color: rgba(0, 0, 0, 0.56);
+            font-size: 16px;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+    }
+
+    .recruit-show-img {
+    }
+
+    .recruit-tags {
+        height: 40px;
+        margin: 30px 10px;
+        position: relative;
+
+        span {
+            margin-right: 15px;
+            color: rgba(0, 0, 0, 0.56);
+
+            i {
+                font-size: 24px;
+                margin-right: 5px;
+            }
+        }
+
+        .entry-done {
+            position: absolute;
+            right: 0;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #b6b6b6;
+            border-radius: 20px;
+        }
+
+        .entry-link {
+            position: absolute;
+            right: 0;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #00c4c4;
+            color: #fff;
+            border-radius: 20px;
+        }
+    }
+
+    .sidebar-left {
+        .recruit-member {
+            margin-bottom: 30px;
+
+            h3 {
+                color: rgba(0, 0, 0, 0.84);
+                font-weight: 700;
+                font: 24px;
+                margin-bottom: 40px;
+            }
+
+            ul {
+                display: flex;
+
+                li {
+                    margin-right: 20px;
+
+                    img {
+                        border-radius: 50%;
+                    }
+
+                    h4 {
+                        font-weight: 600;
+                        color: #24282a;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        section {
+            h3 {
+                font-size: 24px;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 0.84);
+            }
+
+            p {
+                margin: 30px 0 50px;
+                font: 15px;
+                color: rgba(0, 0, 0, 0.84);
+            }
+        }
+    }
+
+    .sidebar-right {
+        .side-content {
+            margin: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.84);
+        }
+
+        .side-bookmark {
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        a {
+            color: rgba(0, 0, 0, 0.56);
+            font-weight: 600;
+            vertical-align: middle;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            padding: 10px 60px;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+
+        i {
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .recruit-suppport {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+}

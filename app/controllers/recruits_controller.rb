@@ -8,6 +8,9 @@ class RecruitsController < ApplicationController
   def show
     @recruit = Recruit.find(params[:id])
     @company = @recruit.company
+    @members = @company.users.where(authority_status: "admin").sample(4)
+    @recruit_feature = @recruit.recruit_features.find_by(feature_id: 2)
+    @headquarters = @company.addresses.find_by(head_status: "head")
   end
 
   def company_index

@@ -1,8 +1,12 @@
-<div>
-	<div><%= attachment_image_tag @feed, :image, size: '800x350' %></div>
-	<div id="favorite_btn_<%= @feed.id %>">
+<div class="feed-show-container">
+	<div class="feed-show-img">
+		<%= attachment_image_tag @feed, :image, size: '800x350' %>
+	</div>
+	<div id="favorite_btn_<%= @feed.id %>" class="fav-show-container">
 		<%= render 'favorite_form', feed: @feed, favorite: @favorite %>
 	</div>
-	<h2><%= @feed.title %></h2>
-	<p><%= @feed.body %></p>
+	<div class="feed-show-content">
+		<h2><%= @feed.title %></h2>
+		<p><%= @feed.body %></p>
+	</div>	
 </div>

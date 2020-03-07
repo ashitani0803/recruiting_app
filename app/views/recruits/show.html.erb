@@ -1,55 +1,93 @@
-<div>
-	<span><%= @recruit.employment_status_i18n %></span>
-	<span><%= @recruit.job_description %></span>
+<div class="recruit-show-container">
+	<div class="recruit-show-header">
+		<span><%= @recruit.job_description %></span>
+		<span><strong><%= @recruit.entries.count %></strong>エントリー</span>
+	</div>
+	
 	<h2><%= @recruit.title %></h2>
 
-	<h3>
-		<%= attachment_image_tag @company, :logo, size: '40x40' %>
-		<%= @company.company_name %>
+	<h3 class="recruit-show-company">
+		<%= link_to company_path(@company) do %>
+			<%= attachment_image_tag @company, :logo, size: '40x40' %>
+			<p><%= @company.company_name %></p>
+		<% end %>
 	</h3>
-	<div>
+	<div class="recruit-show-img">
 		<%= attachment_image_tag @recruit, :image, size: '900x350' %>
 	</div>
-	<div>
-		<% if current_user.entries.find_by(recruit_id: @recruit.id) %>
-			<span>エントリー済み</span>
-		<% else %>
-			<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post, data: { confirm: "この募集にエントリーしますか？" } %>
-		<% end %>
-	</div>
-	<div id="bookmark_btn_<%= @recruit.id %>">
-		<%= render 'bookmark_form', recruit: @recruit, bookmark: @bookmark %>
-	</div>
-	<div>
-		<% if current_user.supports.find_by(recruit_id: @recruit.id) %>
-			応援済み
-		<% else %>
-			<%= link_to '応援する', recruit_supports_path(@recruit), method: :post, data: { confirm: " この募集をTwitterで応援しますか？" } %>
-		<% end %>
-	</div>
-	<div>
-		<h3><%= @company.company_name %>のメンバー</h3>
-		<ul>
-			<% @company.users.each do |member| %>
-				<li><%= attachment_image_tag member, :image, size: '150x150' %></li>
-				<h4><%= member.name %></h4>
+	<div class="recruit-tags">
+		<span><i class="fas fa-map-marker-alt"></i><%= @headquarters.prefecture %></span>
+		<span>
+			<% if @recruit.employment_status == "new_graduate" %>
+				<i class="fas fa-user-graduate"></i>
+			<% elsif @recruit.employment_status == "internship" %>
+				<i class="fas fa-user-graduate"></i>
+			<% elsif @recruit.employment_status == "mid_career" %>
+				<i class="fas fa-briefcase"></i>
+			<% else %>
+				<i class="fas fa-briefcase"></i>
 			<% end %>
-		</ul>
+			<%= @recruit.employment_status_i18n %>
+		</span>
+		<% unless @recruit_feature.nil? %>
+			<span><i class="fas fa-globe"></i>海外進出している</span>
+		<% end %>
+		<% if current_user.entries.find_by(recruit_id: @recruit.id) %>
+			<span class="entry-done">エントリー済み</span>
+		<% else %>
+			<span class="entry-link">
+				<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post, data: { confirm: "この募集にエントリーしますか？" } %>
+			</span>
+		<% end %>
 	</div>
-	<section>
-		<h3>なにをやっているのか</h3>
-		<p><%= @company.what %></p>
-	</section>
-	<section>
-		<h3>なぜやるのか</h3>
-		<p><%= @company.why %></p>
-	</section>
-	<section>
-		<h3>どうやってやるのか</h3>
-		<p><%= @company.how %></p>
-	</section>
-	<section>
-		<h3>こんなことやります</h3>
-		<p><%= @recruit.do %></p>
-	</section>
+	<div class="sidebar-left col-sm-8">
+		<div class="recruit-member">
+			<h3><%= @company.company_name %>のメンバー</h3>
+			<ul>	
+				<% @members.each do |member| %>
+					<%= link_to user_path(member) do %>
+						<li>
+							<%= attachment_image_tag member, :image, size: '130x130' %>
+							<h4><%= member.name %></h4>		
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+		<section>
+			<h3>なにをやっているのか</h3>
+			<p><%= @company.what %></p>
+		</section>
+		<section>
+			<h3>なぜやるのか</h3>
+			<p><%= @company.why %></p>
+		</section>
+		<section>
+			<h3>どうやってやるのか</h3>
+			<p><%= @company.how %></p>
+		</section>
+		<section>
+			<h3>こんなことやります</h3>
+			<p><%= @recruit.do %></p>
+		</section>
+	</div>
+	
+	<div class="sidebar-right col-sm-4">
+		<p class="side-content">
+			<%= @recruit.entries.count %>人がエントリー中
+		</p>
+		<div id="bookmark_btn_<%= @recruit.id %>" class="side-bookmark">
+			<%= render 'bookmark_form', recruit: @recruit, bookmark: @bookmark %>
+		</div>
+		<p class="side-content">
+			<%= @recruit.supports.count %>人が応援しています
+		</p>
+		<div class="recruit-support">
+			<% if current_user.supports.find_by(recruit_id: @recruit.id) %>
+				応援済み
+			<% else %>
+				<%= link_to '応援する', recruit_supports_path(@recruit), method: :post, data: { confirm: " この募集をTwitterで応援しますか？" } %>
+			<% end %>
+		</div>
+	</div>
 </div>
