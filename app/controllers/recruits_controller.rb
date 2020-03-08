@@ -1,5 +1,4 @@
 class RecruitsController < ApplicationController
-  before_action :user_login?
 
   def index
     @recruits = Recruit.all

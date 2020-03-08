@@ -1,14 +1,19 @@
-<div>
-	<h3>フォローしている企業</h3>
+<div class="follow-container">
+	<h2>フォローしている会社</h2>
 	<% @follows.each do |follow| %>
 	<% company = follow.company %>
-		<div>
-			<div><%= attachment_image_tag company, :logo, size: '80x80' %></div>
-			<h3><%= link_to company.company_name, company_path(company) %></h3>
-			<p><%= strip_tags(company.mission_body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
-			<div id="follow_btn">
-				<%= render 'companies/follow_form', company: company %>
+		<div class="follow-cell">
+			<%= attachment_image_tag company, :logo, size: '80x80' %>
+			<div class="follow-company-content">
+				<div class="follow-company-info">
+					<h3><%= link_to company.company_name, company_path(company) %></h3>
+					<p><%= strip_tags(company.mission_body.to_s).gsub(/[\n]/,"").strip.truncate(120) %></p>
+				</div>	
+				<div id="follow_btn">
+					<%= render 'companies/follow_form', company: company %>
+				</div>
 			</div>
+			
 		</div>
 	<% end %>
 </div>

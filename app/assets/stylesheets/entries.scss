@@ -2,3 +2,67 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.entry-container {
+    width: 900px;
+    margin: 50px auto;
+
+    h2 {
+        margin: 30px 0 30px;
+    }
+
+    .entry-table {
+        tr {
+            padding: 10px 0;
+            border-top: 1px solid #9da0a4;
+            border-left: 1px solid #9da0a4;
+        }
+
+        tr:last-child {
+            border-bottom: 1px solid #aaa;
+        }
+
+        td:first-child {
+            width: 300px;
+            text-align: center;
+            border-right: 1px solid #9da0a4;
+
+            img {
+                border-radius: 50%;
+            }
+
+            p {
+                margin: 6px 0 0;
+                font-weight: 500;
+            }
+        }
+
+        td:nth-child(2) {
+            width: 400px;
+            text-align: center;
+            border-right: 1px solid #9da0a4;
+
+            h3 {
+                color: #222222;
+                font-weight: 600;
+                font-size: 22px;
+            }
+
+            p {
+                color: #9da0a4;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        td:last-child {
+            width: 200px;
+            text-align: center;
+            border-right: 1px solid #9da0a4;
+
+            i {
+                font-size: 20px;
+                color: #9da0a4;
+            }
+        }
+    }
+}

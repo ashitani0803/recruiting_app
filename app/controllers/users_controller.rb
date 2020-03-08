@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_login?
+  before_action :user_login?, except: [:show]
   before_action :find_current_user, only: [:edit, :update]
 
 

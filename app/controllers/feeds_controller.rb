@@ -1,6 +1,5 @@
 class FeedsController < ApplicationController
-	before_action :user_login?
-
+  
   def index
   	@feeds = Feed.all
   end

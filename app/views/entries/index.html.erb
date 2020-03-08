@@ -1,14 +1,29 @@
-<div>
-    <ul>
-        <% @entries.each do |entry| %>
-            <li>
-                <div><%= attachment_image_tag entry.recruit.company, :logo, size: "50x50" %></div>
-                <h4><%= entry.recruit.company.company_name %></h4>
-                <p><%= strip_tags(entry.recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
-                <% room = Room.find_by(user_id: entry.user, company_id: entry.recruit.company) %>
-                <span><%= link_to 'メッセージへ', company_room_path(entry.company, room) %></span>
-            </li>
-        <% end %>
-    </ul>
-    
-</div> 
+<div class="entry-container">
+    <h2>応募した募集</h2>
+    <table class="entry-table">
+    <% @entries.each do |entry| %>
+        <tbody>
+            <tr>
+                <td>
+                    <%= attachment_image_tag entry.recruit.company, :logo, size: '50x50' %>
+                    <p><%= entry.recruit.company.company_name %></p>
+                    
+                </td>
+                <td>
+                    <%= link_to recruit_path(entry.recruit) do %>
+                        <h3><%= entry.recruit.title %></h3>
+                        <p><%= strip_tags(entry.recruit.do.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
+                    <% end %>
+                </td>
+                <td>
+                    <% room = current_user.rooms.find_by(company_id: entry.recruit.company) %>
+                    <%= link_to company_room_path(entry.recruit.company, room) do %>
+                       <i class="fas fa-comments"></i> 
+                    <% end %>
+                </td>
+                
+            </tr>
+        </tbody> 
+    <% end %>
+    </table>
+</div>

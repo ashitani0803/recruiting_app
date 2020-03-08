@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-  before_action :user_login?, only: [:about, :member, :show]
 
   def top
   end
