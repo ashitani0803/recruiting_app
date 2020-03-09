@@ -2,8 +2,8 @@
 	<%= attachment_image_tag company, :logo, size: '100x100' %>
 	<div class="company-header-info">
 		<h2><%= company.company_name %></h2>
-		<div id="follow_btn">
-			<%= render 'companies/follow_form', company: company %>
+		<div class="follow_btn_<%= company.id %> follow-btn">
+			<%= render 'companies/follow_form', company: company, follow: @follow %>
 		</div>
 		<a href="<%= @company.link %>" class="company-header-link"><%= company.link %></a>
 		<span class="company-head"><i class="fas fa-map-marker-alt"></i><%= headquarters.prefecture %></span>

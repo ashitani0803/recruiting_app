@@ -12,7 +12,7 @@ class Admin::RecruitsController < ApplicationController
   end
 
   def edit
-    @features= Feature.all
+    @features = Feature.all
   end
 
   def update_status

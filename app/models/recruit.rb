@@ -13,7 +13,7 @@ class Recruit < ApplicationRecord
     enum status: { draft: 0, published: 1 }
 
     def self.recruit_search(search)
-        return Recruit.all unless search
-        Recruit.where(['title LIKE ? OR do LIKE ? OR job_description LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+        return Recruit.where(status: 'published') unless search
+        Recruit.where(['title LIKE ? OR do LIKE ? OR job_description LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"]).where(status: 'published')
     end
 end

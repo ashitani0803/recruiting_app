@@ -102,12 +102,20 @@
     td:nth-child(2) {
         width: 500px;
         text-align: center;
+
+        span {
+            color: #9da0a4;
+        }
     }
 
     th:nth-child(3),
     td:nth-child(3) {
         width: 300px;
         text-align: center;
+
+        span {
+            color: #9da0a4;
+        }
     }
 
     th:last-child,
@@ -136,7 +144,7 @@
 
     .company-header-info {
         margin-left: 15px;
-        #follow_btn {
+        .follow-btn {
             display: inline-block;
 
             span {

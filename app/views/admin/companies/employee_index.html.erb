@@ -18,17 +18,21 @@
                         <%= attachment_image_tag member, :image, format: 'jpg', size: '40x40' %>
                         <%= link_to member.name, user_path(member) %>
                     </td>
-                    <% if member.authority_status == "admin" %>
                     <td>
-                        <%= link_to '管理者権限剥奪', admin_remove_authority_path(@company, member), data: { confirm: "管理者権限を剥奪しますか？"}, method: :post, class: "btn btn-warning" %>
-                    </td>
-                    <% else %>
+                        <% if member.id == current_user.id %>
+                            <span>ログインユーザー</span>
+                        <% elsif member.authority_status == "admin" %>
+                            <%= link_to '管理者権限剥奪', admin_remove_authority_path(@company, member), data: { confirm: "管理者権限を剥奪しますか？"}, method: :post, class: "btn btn-warning" %>
+                        <% else %>
+                            <%= link_to '管理者権限付与', admin_add_authority_path(@company, member), data: { confirm: "管理者権限を付与しますか？"}, method: :post, class: "btn btn-success" %>
+                        <% end %>
+                    </td>    
                     <td>
-                        <%= link_to '管理者権限付与', admin_add_authority_path(@company, member), data: { confirm: "管理者権限を付与しますか？"}, method: :post, class: "btn btn-success" %>
-                    </td>
-                    <% end %>
-                    <td>
-                        <%= link_to '社員登録解除', admin_remove_employee_path(@company, member), data: { confirm: 'この社員を登録解除しますか？'}, method: :post, class: "btn btn-danger" %>
+                        <% if member.id == current_user.id %>
+                            <span>ログインユーザー</span>
+                        <% else %>
+                            <%= link_to '社員登録解除', admin_remove_employee_path(@company, member), data: { confirm: 'この社員を登録解除しますか？'}, method: :post, class: "btn btn-danger" %>
+                        <% end %>
                     </td>
                     <td></td>
                 </tr>

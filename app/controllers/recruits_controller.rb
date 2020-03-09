@@ -1,7 +1,45 @@
 class RecruitsController < ApplicationController
 
   def index
-    @recruits = Recruit.all
+    if params[:recruit]
+      @recruit_hash = params[:recruit].permit(:occupation, :employment_status).to_h
+      @feature_hash = params[:feature].permit(:feature_id).to_h
+
+      if @recruit_hash[:occupation].present?
+        recruit1 = Recruit.where(occupation: @recruit_hash[:occupation], status: 'published')
+      else
+        recruit1 = Recruit.where(status: 'published')
+      end
+
+      if @recruit_hash[:employment_status].present?
+        recruit2 = Recruit.where(employment_status: @recruit_hash[:employment_status], status: 'published')
+      else
+        recruit2 = Recruit.where(status: 'published')
+      end
+
+      if params[:search_word].present?
+        recruit3 = Recruit.recruit_search(params[:search_word])
+      else
+        recruit3 = Recruit.where(status: 'published')
+      end
+
+      recruit4 = recruit1 & recruit2 & recruit3
+
+      if @feature_hash[:feature_id].present?
+        @recruits = []
+        recruit4.each do |r|
+          recruit_features1 = r.recruit_features.where(feature_id: @feature_hash[:feature_id].to_i)
+          recruit_features1.each do |rf|
+            @recruits << rf.recruit
+          end
+        end
+      else
+        @recruits = recruit4
+      end
+      
+    else
+      @recruits = Recruit.where(status: 'published')
+    end
   end
 
   def show
@@ -14,49 +52,23 @@ class RecruitsController < ApplicationController
 
   def company_index
     @company = Company.find(params[:id])
-    @recruits = @company.recruits
+    @recruits = @company.recruits.where(status: 'published')
     @headquarters = @company.addresses.find_by(head_status: "head")
   end
 
   def search
+    #検索画面で(search.html.erb)サイドバーのリンクが押されたら
     if params[:id] == "2"
       @companies = Company.all
     elsif params[:id] == "3"
       @users = User.all
     elsif params[:id] == "1"
-      @recruits = Recruit.all
-    elsif params[:search]
-      @recruits = Recruit.recruit_search(params[:search])
-      @companies = Company.company_search(params[:search])
-      @users = User.user_search(params[:search])
+      @recruits = Recruit.where(status: 'published')
+    #ヘッダーからの検索とその他
     else
-      results = []
-      recruits = Recruit.where(occupation: params[:occupation], employment_status: params[:employment_status])
-      if params[:search_word]
-        @recruits = []
-        words = Recruit.recruit_search(params[:search_word])
-        recruits.each do |r|
-          recruit_features = r.recruit_features.where(feature_id: params[:feature_id])
-          recruit_features.each do |rf|
-            results << rf.recruit
-          end
-          @recruits = words & results
-        end
-      else
         @recruits = Recruit.recruit_search(params[:search])
         @companies = Company.company_search(params[:search])
         @users = User.user_search(params[:search])
-=begin        
-        @recruits = []
-        recruits.each do |r|
-          recruit_features = r.recruit_features.where(feature_id: params[:feature_id])
-          recruit_features.each do |rf|
-            @recruits << rf.recruit
-          end
-        end         
-
-=end
-      end
     end
 
   end

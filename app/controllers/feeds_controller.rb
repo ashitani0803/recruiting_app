@@ -1,7 +1,7 @@
 class FeedsController < ApplicationController
-  
+
   def index
-  	@feeds = Feed.all
+  	@feeds = Feed.where(status: 'published')
   end
 
   def show
@@ -10,7 +10,7 @@ class FeedsController < ApplicationController
 
   def company_feed
   	@company = Company.find(params[:id])
-  	@feeds = @company.feeds
+  	@feeds = @company.feeds.where(status: 'published')
     @headquarters = @company.addresses.find_by(head_status: "head")
   end
 end

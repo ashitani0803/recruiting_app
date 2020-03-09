@@ -1,11 +1,11 @@
 <div class="col-sm-3">
 	<h3>検索条件</h3>
-	<%= form_tag search_path, method: :get do %>
-		<%= text_field :search_word, '' ,:placeholder => "キーワードで検索", class: "form-control" %><br>
-		<%= select :recruit, :occupation, Recruit.occupations_i18n.keys.map {|k| [I18n.t("enums.recruit.occupation.#{k}"), k]}, {}, class: "form-control" %><br>
-		<%= select :recruit, :employment_status, Recruit.employment_statuses_i18n.keys.map {|k| [I18n.t("enums.recruit.employment_status.#{k}"), k]}, {}, class: "form-control" %>
+	<%= form_tag recruits_path, method: :get do %>
+		<%= text_field_tag :search_word, '', :placeholder => "キーワードで検索", class: "form-control" %><br>
+		<%= select :recruit, :occupation, Recruit.occupations_i18n.keys.map {|k| [I18n.t("enums.recruit.occupation.#{k}"), k]}, {include_blank: true}, class: "form-control" %><br>
+		<%= select :recruit, :employment_status, Recruit.employment_statuses_i18n.keys.map {|k| [I18n.t("enums.recruit.employment_status.#{k}"), k]}, {include_blank: true}, class: "form-control" %>
 		<h5>特徴</h5>
-		<%= collection_select(:feature, :feature_id, Feature.all, :id, :feature, {promp: ""} , {class: "form-control"}) %><br>
+		<%= collection_select(:feature, :feature_id, Feature.all, :id, :feature, {include_blank: true}, {class: "form-control"}) %><br>
 		<%= submit_tag "この条件で検索する", :body => nil, class: "btn btn-info" %>
 	<% end %>
 

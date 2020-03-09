@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .link-container {
     width: 70%;
-    margin: 50px auto 0;
+    margin: 50px auto 50px;
 
     a:hover {
         text-decoration: none;
@@ -100,7 +100,12 @@
 
 .result-container {
     width: 90%;
-    margin: 0 auto;
+    margin: 50px auto 0;
+
+    .sort-bar {
+        padding-left: 20px;
+        color: #9da0a4;
+    }
 
     h3 {
         background-color: #ebedef;
@@ -149,10 +154,6 @@
     }
 }
 
-.result-container:last-child {
-    margin-bottom: 80px;
-}
-
 .recruit-show-container {
     width: 900px;
     margin: 50px auto;
@@ -194,9 +195,6 @@
         }
     }
 
-    .recruit-show-img {
-    }
-
     .recruit-tags {
         height: 40px;
         margin: 30px 10px;
@@ -230,6 +228,10 @@
             background-color: #00c4c4;
             color: #fff;
             border-radius: 20px;
+
+            a {
+                color: #fff;
+            }
         }
     }
 

@@ -1,1 +1,1 @@
-$("#follow_btn").html('<%= j (render("companies/follow_form", company: @company)) %>');
+$(".follow_btn_<%= @company.id %>").html('<%= j (render("companies/follow_form", company: @company)) %>');

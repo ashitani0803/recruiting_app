@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .scout-form {
     width: 70%;
-    margin: 0 auto 30px;
+    margin: 40px auto 30px;
 
     input {
         display: inline-block;
@@ -49,5 +49,11 @@
 
     .scout-link {
         text-align: right;
+        .scout-done {
+            padding: 9px 20px;
+            background-color: #f0f0f0;
+            color: #b6b6b6;
+            border-radius: 4px;
+        }
     }
 }

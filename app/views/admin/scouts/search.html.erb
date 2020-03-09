@@ -25,7 +25,11 @@
                         <p><%= strip_tags(candidate.introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %></p>
                     </div>
                     <div class="scout-link">
-                        <%= link_to 'スカウトを送る', admin_scouts_path(candidate), method: :post, data: { confirm: "この人にスカウトを送りますか？" }, class: "btn btn-info" %>
+                        <% if candidate.scouts.find_by(company_id: @company.id) %>
+                            <span class="scout-done">スカウト済み</span>
+                        <% else %>
+                            <span><%= link_to 'スカウトを送る', admin_scouts_path(candidate), method: :post, data: { confirm: "この人にスカウトを送りますか？" }, class: "btn btn-info" %></span>
+                        <% end %>
                     </div> 
                 </div>
             <% end %>

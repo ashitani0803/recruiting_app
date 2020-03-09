@@ -7,8 +7,8 @@
 					<%= attachment_image_tag @company, :logo, size: '40x40' %>
 					<p><%= @company.company_name %></p>
 				<% end %>
-				<div id="follow_btn">
-					<%= render 'companies/follow_form', company: feed.company %>
+				<div class="follow_btn_<%= @company.id %> follow-btn">
+					<%= render 'companies/follow_form', company: feed.company, follow: @follow %>
 				</div>
 			</div>
 		<%= link_to feed_path(feed) do %>

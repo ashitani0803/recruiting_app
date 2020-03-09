@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_update_params)
       flash[:success] = "プロフィールを更新しました。"
-      if @user.authority_status = "admin"
-        admin_path(@user.company)
+      if @user.authority_status == "admin"
+        redirect_to admin_path(@user.company)
       else
         redirect_to recruits_path
       end
