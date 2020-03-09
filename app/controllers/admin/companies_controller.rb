@@ -37,8 +37,8 @@ class Admin::CompaniesController < ApplicationController
 			user = User.find_by(email: params[:email])
 			if user.company_id == nil || user.company_id != @company.id
 				CompanyMailer.send_mail(user, @company).deliver
-				redirect_to admin_employee_index_path
 				flash[:info] = "招待メールを送りました。"
+				redirect_to admin_employee_index_path
 			else
 				flash.now[:alert] = "すでに社員登録されています。"
 				render :invite_new
