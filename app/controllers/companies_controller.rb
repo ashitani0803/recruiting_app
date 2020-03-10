@@ -34,7 +34,7 @@ class CompaniesController < ApplicationController
     admin.password = generated_password
     if @company.save
       admin.company_id = @company.id
-      admin.save
+      admin.save(validate: false)
       sign_in(admin)
       PasswordMailer.send_password(admin, generated_password).deliver
       flash[:success] = "会社を登録しました。"

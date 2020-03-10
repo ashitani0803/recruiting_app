@@ -2,7 +2,7 @@
 <div class="col-sm-7">
     <h2 class="text-center">社員を追加</h2>
     <p id="invite-explain">追加したい社員のメールアドレスを入力して「招待メールを送る」をクリックすると、社員登録の招待メールが届きます。</p>
-    <%= form_with url: admin_invite_path, method: :get do |f| %>
+    <%= form_with local: true, url: admin_invite_path, method: :get do |f| %>
         <section class="form-group">
             <%= f.label :メールアドレスから追加 %>
             <%= f.email_field :email, class: "form-control" %>

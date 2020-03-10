@@ -1,6 +1,8 @@
+<div class="notification">
+        </div>
 <div class="form-container">
     <h2 class="text-center">会社登録フォーム</h2>
-    <%= form_with model: @company, url: companies_path do |f| %>
+    <%= form_with model: @company, builder: CompaniesHelper::ErrorFormBuilder, local: true, url: companies_path do |f| %>
         <div class="form-group">
             <%= f.label :会社名 %>
             <%= f.text_field :company_name, class: "form-control" %>

@@ -1,7 +1,7 @@
 <%= render 'admin/companies/sidebar', company: @company %>
 <div class="col-sm-9">
     <div class="message-title">
-        <%= attachment_image_tag @candidate, :image, size: "45x45" %>
+        <%= attachment_image_tag @candidate, :image, fallback: "no_image.jpg", size: "45x45" %>
         <div class="message-user-name">
             <strong><%= @candidate.name %></strong>
         </div>

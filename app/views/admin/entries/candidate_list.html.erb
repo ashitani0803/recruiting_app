@@ -15,7 +15,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <%= attachment_image_tag entry.user, :image, size: '50x50' %>
+                        <%= attachment_image_tag entry.user, :image, fallback: "no_image.jpg", size: '50x50' %>
                         <div class="table-cell-inner">
                             <%= link_to entry.user.name, user_path(entry.user) %><br>
                             <strong><%= entry.user.work_experience %></strong>

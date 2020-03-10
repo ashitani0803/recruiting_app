@@ -14,7 +14,7 @@
 			<% @company.users.each do |member| %>
 				<%= link_to user_path(member) do %>
 					<li>
-						<%= attachment_image_tag member, :image, size: '130x130' %>
+						<%= attachment_image_tag member, :image, fallback: "no_image.jpg", size: '130x130' %>
 						<h4><%= member.name %></h4>
 					</li>		
 				<% end %>

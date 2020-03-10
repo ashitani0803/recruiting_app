@@ -50,7 +50,7 @@
             <% @users.sample(5).each do |user| %>
                 <%= link_to user_path(user) do %> 
                     <div class="result-body">
-                        <%= attachment_image_tag user, :image, size: "80x80" %>        
+                        <%= attachment_image_tag user, :image, fallback: "no_image.jpg", size: "80x80" %>        
                         <div class="result-content">
                             <h4><%= user.name %></h4>
                             <% unless user.company_id == nil %>
@@ -152,7 +152,7 @@
             <% @users.sample(5).each do |user| %>
                 <%= link_to user_path(user) do %> 
                     <div class="result-body">
-                        <%= attachment_image_tag user, :image, size: "80x80" %>        
+                        <%= attachment_image_tag user, :image, fallback: "no_image.jpg", size: "80x80" %>        
                         <div class="result-content">
                             <h4><%= user.name %></h4>
                             <% unless user.company_id == nil %>

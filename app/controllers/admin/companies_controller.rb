@@ -21,7 +21,7 @@ class Admin::CompaniesController < ApplicationController
 	def destroy
 		@company = Company.find(params[:id])
 		@company.destroy
-		flash[:info] = "会社アカウントを削除しました。"
+		flash[:alert] = "会社アカウントを削除しました。"
 		redirect_to recruits_path
 	end
 
@@ -60,7 +60,7 @@ class Admin::CompaniesController < ApplicationController
 		member = User.find(params[:id])
 		member.company_id = nil
 		member.save
-		flash[:info] = "社員登録を解除しました。"
+		flash[:alert] = "社員登録を解除しました。"
 		redirect_to admin_employee_index_path
 	end
 
@@ -73,9 +73,10 @@ class Admin::CompaniesController < ApplicationController
 	end
 
 	def remove_authority
-		@admin.authority_status = "general"
-		@admin.save
-		flash[:info] = "管理者権限を削除しました。"
+		member = User.find(params[:id])
+		member.authority_status = "general"
+		member.save
+		flash[:alert] = "管理者権限を削除しました。"
 		redirect_to admin_employee_index_path(@admin.company)
 	end
 

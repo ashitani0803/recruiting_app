@@ -13,7 +13,7 @@
         <p class="candidate-result"><strong><%= @candidates.count %></strong>人の候補者</p>
             <% @candidates.each do |candidate| %>
                 <div class="candidate-cell">
-                    <%= attachment_image_tag candidate, :image, size: "50x50" %>
+                    <%= attachment_image_tag candidate, :image, fallback: "no_image.jpg", size: "50x50" %>
                     <div class="candidate-title">
                         <h3><%= candidate.name %></h3>
                         <p><%= candidate.work_experience %></p>

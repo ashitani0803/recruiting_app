@@ -18,10 +18,13 @@ class Admin::RecruitsController < ApplicationController
   def update_status
     if @recruit.status == 'draft'
       @recruit.status = 'published'
+      @recruit.save
+      flash[:success] = "募集を公開しました。"
     else
       @recruit.status = 'draft'
+      @recruit.save
+      flash[:alert] = "募集を公開停止にしました。"
     end
-    @recruit.save
     redirect_to admin_company_recruits_path(@recruit)
   end
 
@@ -50,7 +53,7 @@ class Admin::RecruitsController < ApplicationController
   
   def destroy
     @recruit.destroy
-    flash[:info] = "募集を削除しました。"
+    flash[:alert] = "募集を削除しました。"
     redirect_to admin_company_recruits_path
   end
   

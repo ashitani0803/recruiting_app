@@ -28,10 +28,13 @@ class Admin::FeedsController < ApplicationController
   def update_status
     if @feed.status == 'draft'
       @feed.status = 'published'
+      @feed.save
+      flash[:success] = "フィードを公開しました。"
     else
       @feed.status = 'draft'
+      @feed.save
+      flash[:alert] = "フィードを公開停止にしました。"
     end
-    @feed.save
     redirect_to admin_company_feeds_path(@feed)
   end
 
@@ -47,7 +50,7 @@ class Admin::FeedsController < ApplicationController
 
   def destroy
     @feed.destroy
-    flash[:info] = "フィードを削除しました。"
+    flash[:alert] = "フィードを削除しました。"
     redirect_to admin_company_feeds_path
   end
 

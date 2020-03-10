@@ -29,9 +29,12 @@
                         <% end %>
                     <% end %>
                 </li>
-                <li id="logout-right">
-                    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %>
-                </li>
+                <div id="logout-right">
+                    <li><%= link_to '応募した募集', entries_path %></li>
+                    <li><%= link_to '保存した募集', bookmarks_path %></li>
+                    <li><%= link_to 'フォローしている会社', follows_path %></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %></li>
+                </div>
             </ul>
         <% else %>
             <ul class="header" id="logout">
@@ -41,10 +44,10 @@
         <% end %>
         </header>
         <div class="notification">
-                <% flash.each do |key, value|%>
-                    <%= content_tag(:p, value, class: key) %>
-                <% end %>
-            </div>
+            <% flash.each do |key, value|%>
+                <%= content_tag(:p, value, class: key) %>
+            <% end %>
+        </div>
         <div class="container">
             <%= yield %>
         </div>

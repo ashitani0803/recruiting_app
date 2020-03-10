@@ -15,7 +15,7 @@
             <% @members.each do |member| %>
                 <tr>
                     <td>
-                        <%= attachment_image_tag member, :image, format: 'jpg', size: '40x40' %>
+                        <%= attachment_image_tag member, :image, format: 'jpg', fallback: "no_image.jpg", size: '40x40' %>
                         <%= link_to member.name, user_path(member) %>
                     </td>
                     <td>

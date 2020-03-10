@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         if current_user.authority_status == "admin"
             admin_path(current_user.company)
         else
-            recruits_path
+            edit_user_path(current_user)
         end
         
     end
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :birth_year, :birth_month, :birth_day])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sex, :birth_year, :birth_month, :birth_day, :email, :password])
     end
 
     

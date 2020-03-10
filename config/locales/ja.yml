@@ -1,5 +1,18 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      company: 会社
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      company:
+        company_name: 会社名
+        person_name: 担当者名
+        email: メールアドレス
+        phone_number: 電話番号
   enums:
     address:
       head_status:
@@ -28,3 +41,4 @@ ja:
       status:
         draft: 下書き
         published: 公開中
+

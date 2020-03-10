@@ -1,7 +1,7 @@
 <%= render 'admin/companies/sidebar', company: @company %>
 <div class="col-sm-7">
 	<h2 class="text-center">フィードの作成</h2>
-	<%= form_with model: @feed, url: admin_company_feeds_path do |f| %>
+	<%= form_with model: @feed, local: true, url: admin_company_feeds_path do |f| %>
 		<section class="form-group">
 			<%= f.label :画像 %>
 			<%= f.attachment_field :image, class: "btn btn-file" %>

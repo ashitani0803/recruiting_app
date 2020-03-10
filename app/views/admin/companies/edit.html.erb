@@ -1,7 +1,7 @@
 <%= render 'sidebar', company: @company %>
 <div class="col-sm-7"> 
 	<h2 class="text-center">会社情報編集</h2>
-	<%= form_with model: @company, url: admin_company_path do |f| %>
+	<%= form_with model: @company, local: true, url: admin_company_path do |f| %>
 		<section class="form-group clearfix">
 			<%= f.label :ロゴ, class: "col-sm-4" %>
 			<div class="col-sm-8">
