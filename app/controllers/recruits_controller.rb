@@ -69,7 +69,6 @@ class RecruitsController < ApplicationController
         @recruits = Recruit.recruit_search(params[:search])
         @companies = Company.company_search(params[:search])
         @users = User.user_search(params[:search])
-        binding.pry
     end
 
   end
