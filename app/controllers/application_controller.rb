@@ -14,11 +14,14 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
         if current_user.authority_status == "admin"
             admin_path(current_user.company)
+        elsif current_user.phone_number.present? || current_user.educational_background.present? || current_user.work_experience.present? || current_user.introduction.present?
+            recruits_path
         else
             edit_user_path(current_user)
         end
-        
     end
+
+   
 
     def after_sign_out_path_for(resource)
         root_path

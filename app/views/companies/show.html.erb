@@ -26,7 +26,9 @@
 			<%= attachment_image_tag @company, :logo, size: '50x50' %>
 			<h3><%= @company.company_name %></h3>
 		</div>
+	<% if @headquarters %>
 		<li><i class="fas fa-map-marker-alt"></i><%= @headquarters.prefecture %><%= @headquarters.municipality %><%= @headquarters.building %></li>
+	<% end %>
 		<li><i class="fas fa-link"></i><a href="<%= @company.link %>"><%= @company.link %></a></li>
 		<li><i class="fas fa-flag"></i><%= @company.created_at.strftime('%Y/%m') %>に設立</li>
 		<li><i class="fas fa-user"></i><%= @company.person_name %>が創業</li>

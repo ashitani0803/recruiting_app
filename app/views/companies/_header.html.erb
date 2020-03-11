@@ -6,7 +6,9 @@
 			<%= render 'companies/follow_form', company: company, follow: @follow %>
 		</div>
 		<a href="<%= @company.link %>" class="company-header-link"><%= company.link %></a>
-		<span class="company-head"><i class="fas fa-map-marker-alt"></i><%= headquarters.prefecture %></span>
+		<% if headquarters %>
+			<span class="company-head"><i class="fas fa-map-marker-alt"></i><%= headquarters.prefecture %></span>
+		<% end %>
 	</div>
 		
 	<nav>
