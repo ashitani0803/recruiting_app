@@ -23,6 +23,6 @@ class Company < ApplicationRecord
     
     def self.company_search(search)
         return Company.all unless search
-        Company.where(['company_name LIKE ?', '%#{search}%'])
+        Company.where(['company_name LIKE ?', "%#{search}%"])
     end
 end
