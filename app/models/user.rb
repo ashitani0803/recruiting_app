@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :supports, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-
+  validates :name, presence: true, on: :update
   validates :name, :sex, :birth_year, :birth_month, :birth_day, presence: true, on: :create
   validates :email, format: { with: VALID_EMAIL_REGEX }, presence: true, on: :create
   validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }, allow_blank: true, on: :update
