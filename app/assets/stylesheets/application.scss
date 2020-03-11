@@ -117,14 +117,16 @@ header {
 }
 
 .header {
+    min-width: 980px;
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
+    font-weight: 600;
     background: #24282a;
     position: relative;
     margin-bottom: 0;
 
     li {
-        margin: 0 15px;
+        margin: 0 8px;
         padding: 20px 0;
 
         strong {
@@ -182,7 +184,7 @@ header {
         right: 0;
 
         li {
-            margin: 0 15px;
+            margin: 0 8px;
             padding: 20px 0;
             a {
                 color: #ccc;

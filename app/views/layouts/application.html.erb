@@ -18,7 +18,7 @@
             <% if current_user.authority_status == "admin" %>
                 <li><%= link_to '管理画面へ', admin_path(current_user.company) %></li>
             <% end %>
-                <li><%= link_to '募集一覧', recruits_path %></li>
+                <li><%= link_to '募集', recruits_path %></li>
                 <li><%= link_to 'フィード', feeds_path %></li>
                 <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
                 <li id="header-search">
@@ -32,7 +32,7 @@
                 <div id="logout-right">
                     <li><%= link_to '応募した募集', entries_path %></li>
                     <li><%= link_to '保存した募集', bookmarks_path %></li>
-                    <li><%= link_to 'フォローしている会社', follows_path %></li>
+                    <li><%= link_to 'フォローした会社', follows_path %></li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %></li>
                 </div>
             </ul>

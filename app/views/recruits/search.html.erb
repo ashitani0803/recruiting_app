@@ -30,7 +30,7 @@
     <% if params[:id] == "2" %>
         <div class="result-container">
             <h3>会社</h3>
-            <% @companies.sample(5).each do |company| %>
+            <% @companies.each do |company| %>
                 <%= link_to company_path(company) do %>
                     <div class="result-body">
                         <%= attachment_image_tag company, :logo, size: "80x80" %>
@@ -47,7 +47,7 @@
     <% elsif params[:id] == "3" %>
         <div class="result-container">
             <h3>プロフィール</h3>
-            <% @users.sample(5).each do |user| %>
+            <% @users.each do |user| %>
                 <%= link_to user_path(user) do %> 
                     <div class="result-body">
                         <%= attachment_image_tag user, :image, fallback: "no_image.jpg", size: "80x80" %>        
@@ -64,7 +64,7 @@
     <% elsif params[:id] == "1" %>
         <div class="result-container">
             <h3>募集</h3>
-            <% @recruits.sample(1).each do |recruit| %>
+            <% @recruits.each do |recruit| %>
                 <%= link_to recruit_path(recruit) do %>
                     <div class="result-body">
                         <%= attachment_image_tag recruit, :image, size: "80x80" %>
