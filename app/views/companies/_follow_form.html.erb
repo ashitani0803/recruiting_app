@@ -1,4 +1,10 @@
-<% if follow = current_user.follows.find_by(company_id: company.id) %>
+<% if !user_signed_in? %>
+	<li class="follow_on">
+		<%= link_to company_follows_path(company), method: :post, remote: true do %>
+			<span>フォロー</span>
+		<% end %>
+	</li>
+<% elsif follow = current_user.follows.find_by(company_id: company.id) %>
 	<li class="follow_off">
 		<%= link_to company_follow_path(company, follow), method: :delete, remote: true do %>
 			<span>フォロー中</span>

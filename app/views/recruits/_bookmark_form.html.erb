@@ -1,4 +1,10 @@
-<% if current_user.bookmarks.find_by(recruit_id: recruit.id) %>
+<% if !user_signed_in? %>
+	<li class="bookmark_on">
+		<%= link_to recruit_bookmarks_path(recruit), method: :post, remote: true do %>
+			<i class="far fa-bookmark"></i>
+		<% end %>
+	</li>
+<% elsif current_user.bookmarks.find_by(recruit_id: recruit.id) %>
 	<li class="bookmark_off">
 		<%= link_to recruit_bookmarks_path(recruit), method: :delete, remote: true do %>
 			<i class="fas fa-bookmark"></i>

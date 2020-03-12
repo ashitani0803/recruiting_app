@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     def user_login?
-        redirect_to root_path unless user_signed_in?
+        if !user_signed_in?
+            flash[:alert] = "ログインしてください。"
+            redirect_to root_path unless user_signed_in?
+        end
     end
 
     def find_current_user

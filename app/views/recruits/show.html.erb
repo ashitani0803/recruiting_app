@@ -32,7 +32,11 @@
 		<% unless @recruit_feature.nil? %>
 			<span><i class="fas fa-globe"></i>海外進出している</span>
 		<% end %>
-		<% if current_user.authority_status == "admin" %>
+		<% if !user_signed_in? %>
+			<span class="entry-link">
+				<%= link_to '話を聞きに行きたい', recruit_entries_path(@recruit), method: :post, data: { confirm: "この募集にエントリーしますか？" } %>
+			</span>
+		<% elsif current_user.authority_status == "admin" %>
 			<span class="entry-done">応募できません</span>
 		<% elsif current_user.entries.find_by(recruit_id: @recruit.id) %>
 			<span class="entry-done">エントリー済み</span>
@@ -85,7 +89,9 @@
 			<%= @recruit.supports.count %>人が応援しています
 		</p>
 		<div class="recruit-support">
-			<% if current_user.supports.find_by(recruit_id: @recruit.id) %>
+			<% if !user_signed_in? %>
+				<%= link_to '応援する', recruit_supports_path(@recruit), method: :post, data: { confirm: " この募集をTwitterで応援しますか？" } %>
+			<% elsif current_user.supports.find_by(recruit_id: @recruit.id) %>
 				応援済み
 			<% else %>
 				<%= link_to '応援する', recruit_supports_path(@recruit), method: :post, data: { confirm: " この募集をTwitterで応援しますか？" } %>
