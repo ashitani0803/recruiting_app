@@ -30,7 +30,9 @@
                     <% end %>
                 </li>
                 <div id="logout-right">
-                    <li><%= link_to '応募した募集', entries_path %></li>
+                    <% unless current_user.authority_status == "admin" %>
+                        <li><%= link_to '応募した募集', entries_path %></li>
+                    <% end %>
                     <li><%= link_to '保存した募集', bookmarks_path %></li>
                     <li><%= link_to 'フォローした会社', follows_path %></li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？"} %></li>

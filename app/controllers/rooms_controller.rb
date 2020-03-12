@@ -11,4 +11,10 @@ class RoomsController < ApplicationController
 
 	private
 
+	def prevent_admin
+		if current_user.authority_status == "admin"
+			redirect_to admin_path(current_user.company)
+		end
+	end
+
 end

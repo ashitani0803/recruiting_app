@@ -32,7 +32,9 @@
 		<% unless @recruit_feature.nil? %>
 			<span><i class="fas fa-globe"></i>海外進出している</span>
 		<% end %>
-		<% if current_user.entries.find_by(recruit_id: @recruit.id) %>
+		<% if current_user.authority_status == "admin" %>
+			<span class="entry-done">応募できません</span>
+		<% elsif current_user.entries.find_by(recruit_id: @recruit.id) %>
 			<span class="entry-done">エントリー済み</span>
 		<% else %>
 			<span class="entry-link">
