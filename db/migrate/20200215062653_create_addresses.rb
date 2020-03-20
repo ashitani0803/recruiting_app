@@ -4,8 +4,9 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.integer :head_status
       t.string :postal_code
       t.string :prefecture
-      t.string :municipality
-      t.string :building
+      t.string :address
+      t.float :latitude
+      t.float :longitude
       t.integer :company_id
 
       t.timestamps

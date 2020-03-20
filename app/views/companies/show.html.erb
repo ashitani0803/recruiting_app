@@ -27,11 +27,40 @@
 			<h3><%= @company.company_name %></h3>
 		</div>
 	<% if @headquarters %>
-		<li><i class="fas fa-map-marker-alt"></i><%= @headquarters.prefecture %><%= @headquarters.municipality %><%= @headquarters.building %></li>
+		<li><i class="fas fa-map-marker-alt"></i><%= @headquarters.prefecture %><%= @headquarters.address %></li>
 	<% end %>
 		<li><i class="fas fa-link"></i><a href="<%= @company.link %>"><%= @company.link %></a></li>
 		<li><i class="fas fa-flag"></i><%= @company.created_at.strftime('%Y/%m') %>に設立</li>
 		<li><i class="fas fa-user"></i><%= @company.person_name %>が創業</li>
 		<li><i class="fas fa-users"></i><%= @company.users.count %>人のメンバー</li>
 	</div>
+	<div id="map"></div>
 </div>
+
+<script>
+function initMap() {
+	var test = { lat: <%= @headquarters.latitude %>, lng: <%=@headquarters.longitude%> }
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 15,
+		center: test
+	});
+	var transitLayer = new google.maps.TransitLayer()
+	transitLayer.setMap(map)
+
+	var contentString = "#{@headquaters.address}"
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	})
+
+	var marker = new google.maps.Marker({
+		position: test,
+		map: map,
+		title: contentString
+	})
+
+	marker.addListener('click', function() {
+		infowindow.open(map, marker)
+	})
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GEOCODING_API_KEY'] %>&callback=initMap" async defer></script>

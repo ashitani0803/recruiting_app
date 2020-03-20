@@ -9,7 +9,7 @@ class Admin::CompaniesController < ApplicationController
 	end
 
 	def update
-		if @company.update(company_params)
+		if @company.update!(company_params)
 			flash[:success] = "会社情報を更新しました。"
 			redirect_to admin_path(@admin)
 		else
@@ -94,6 +94,6 @@ class Admin::CompaniesController < ApplicationController
 	end
 
 	def company_params
-		params.require(:company).permit(:logo, :establish_year, :establish_month, :link, :mission_title, :mission_body, :value, :what, :why, :how, addresses_attributes: [:id, :head_status, :postal_code, :prefecture, :municipality, :building, :_destroy])
+		params.require(:company).permit(:logo, :establish_year, :establish_month, :link, :mission_title, :mission_body, :value, :what, :why, :how, addresses_attributes: [:id, :head_status, :postal_code, :prefecture, :address, :latitude, :longitude, :_destroy])
 	end
 end

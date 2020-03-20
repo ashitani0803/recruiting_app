@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 2020_03_03_064811) do
     t.integer "head_status"
     t.string "postal_code"
     t.string "prefecture"
-    t.string "municipality"
-    t.string "building"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
